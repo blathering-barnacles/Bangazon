@@ -7,5 +7,5 @@ class ComputerEmployee(models.Model):
     methods: none
    """
 
-    employee = models.ForeignKey(Employee, on_delete=models.CASCADE)
-    computer = models.ForeignKey(Computer, on_delete=models.CASCADE)
+    employee = models.ForeignKey("Employee", on_delete=models.CASCADE)
+    computer = models.ForeignKey("Computer", on_delete=models.CASCADE)

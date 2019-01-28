@@ -16,9 +16,9 @@ class Computer(models.Model):
     make = models.CharField(max_length=20)
     purchaseDate = models.DateField()
     decomissionDate = models.DateField()
-    employees = models.ManyToManyField(Employee, through='ComputerEmployee')
+    employees = models.ManyToManyField("Employee", through='ComputerEmployee')
 
     def __str__(self):
-      ''' purpose: This method just returns the make.
-      arguments: self'''
+        ''' purpose: This method just returns the make. arguments: self '''
+
         return self.make
