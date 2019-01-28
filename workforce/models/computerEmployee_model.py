@@ -1,4 +1,6 @@
 from django.db import models
+from .employee_model import Employee
+from .computer_model import Computer
 
 class ComputerEmployee(models.Model):
     """
@@ -7,5 +9,5 @@ class ComputerEmployee(models.Model):
     methods: none
    """
 
-    employee = models.ForeignKey(Employee, on_delete=models.CASCADE)
-    computer = models.ForeignKey(Computer, on_delete=models.CASCADE)
+    employee = models.ForeignKey("Employee", on_delete=models.CASCADE)
+    computer = models.ForeignKey("Computer", on_delete=models.CASCADE)

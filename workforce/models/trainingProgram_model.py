@@ -1,5 +1,6 @@
 from django.db import models
 
+
 class TrainingProgram(models.Model):
     """
     A model that defines a Training Program and will create a table in our database with the same name
@@ -11,7 +12,7 @@ class TrainingProgram(models.Model):
     startDate = models.DateField()
     endDate = models.DateField()
     maxAttendees = models.IntegerField()
-    employee = models.ManyToManyField(Employee, through='EmployeeTrainingProgram')
+    employee = models.ManyToManyField("Employee", through='EmployeeTrainingProgram')
 
     def __str__(self):
         ''' returns a string representation of the model '''

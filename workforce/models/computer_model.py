@@ -1,5 +1,6 @@
 from django.db import models
 
+
 '''Note to self: Only the main class has the many to many, the join table has both foreing keys.
 The many to many will access the join table and get the foreing keys that it needs from the join table.'''
 
@@ -15,10 +16,9 @@ The many to many will access the join table and get the foreing keys that it nee
 class Computer(models.Model):
     make = models.CharField(max_length=20)
     purchaseDate = models.DateField()
-    decomissionDate = models.DateField()
-    employees = models.ManyToManyField(Employee, through='ComputerEmployee')
+    decommissionDate = models.DateField()
+    employees = models.ManyToManyField("Employee", through='ComputerEmployee')
 
     def __str__(self):
-      ''' purpose: This method just returns the make.
-      arguments: self'''
+        ''' purpose: This method just returns the make. arguments: self '''
         return self.make
