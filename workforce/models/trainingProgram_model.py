@@ -1,5 +1,6 @@
 from django.db import models
 
+
 class TrainingProgram(models.Model):
     """
     A model that defines a Training Program and will create a table in our database with the same name
