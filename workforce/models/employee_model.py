@@ -11,18 +11,18 @@ class Employee(models.Model):
 
     """
 
-    departmentId = models.ForeignKey(Department, on_delete=models.CASCADE)
+    departmentId = models.ForeignKey("Department", on_delete=models.CASCADE)
     firstName = models.CharField(max_length=100)
     lastName = models.CharField(max_length=100)
     startDate = models.DateField()
     isSupervisor = models.BooleanField()
 
-    """
-
-    Purpose: converts data to string,
-    Arguments: self
-
-    """
     def __str__(self):
+        """
+
+        Purpose: converts data to string,
+        Arguments: self
+
+        """
         return self.firstName, self.lastName
 

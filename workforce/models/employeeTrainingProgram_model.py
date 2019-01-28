@@ -6,6 +6,6 @@ class EmployeeTrainingProgram(models.Model):
     Author: S.W., R.L.
     methods: null
     """
-    employeeId = models.ForeignKey(Employee, on_delete=models.CASCADE)
-    trainingProgramId = models.ForeignKey(TrainingProgram, on_delete=models.CASCADE)
+    employeeId = models.ForeignKey("Employee", on_delete=models.CASCADE)
+    trainingProgramId = models.ForeignKey("TrainingProgram", on_delete=models.CASCADE)
 
