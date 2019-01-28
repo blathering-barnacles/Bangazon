@@ -14,7 +14,7 @@ class Employee(models.Model):
     departmentId = models.ForeignKey(Department, on_delete=models.CASCADE)
     firstName = models.CharField(max_length=100)
     lastName = models.CharField(max_length=100)
-    startDate = models.DateTimeField()
+    startDate = models.DateField()
     isSupervisor = models.BooleanField()
 
     """
