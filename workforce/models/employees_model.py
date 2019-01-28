@@ -6,4 +6,7 @@ class Employee(models.Model):
     lastName = models.CharField(max_length=100)
     startDate = models.DateTimeField()
     isSupervisor = models.BooleanField()
+
+    def __str__(self):
+        return self.firstName, self.lastName
     
