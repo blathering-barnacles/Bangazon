@@ -1,2 +1,0 @@
-from .trainingProgram_model import TrainingProgram
-from .employeeTrainingProgram_model import EmployeeTrainingProgram
