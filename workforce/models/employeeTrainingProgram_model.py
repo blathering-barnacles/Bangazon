@@ -1,4 +1,6 @@
 from django.db import models
+from .employee_model import Employee
+from .trainingProgram_model import TrainingProgram
 
 class EmployeeTrainingProgram(models.Model):
     """
