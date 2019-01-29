@@ -26,47 +26,49 @@ class EmployeeListTest(TestCase):
         new_employee = Employee.objects.create(
             firstName="Richard",
             lastName="Lancaster",
-            biggest_hit="Honk Honk Squeak"
+            startDate="1998-08-17",
+            isSupervisor="1",
+            department_id="2"
         )
 
         # Issue a GET request. "client" is a dummy web browser
         # 'reverse' is used to generate a URL for a given view. The main advantage is that you do not hard code routes in your code.
-        response = self.client.get(reverse('history:artists'))
+        response = self.client.get(reverse('workforce:employeeList'))
 
         # Check that the response is 200 OK.
         self.assertEqual(response.status_code, 200)
 
         # Check that the rendered context contains 1 artist.
         # Response.context is the context variable passed to the template by the view. This is incredibly useful for testing, because it allows us to confirm that our template is getting all the data it needs.
-        self.assertEqual(len(response.context['artist_list']), 1)
+        self.assertEqual(len(response.context['all_employees']), 1)
 
         # .encode converts from unicode to utf-8
         # example:
         # If the string is: pythön!
         # The encoded version is: b'pyth\xc3\xb6n!'
-        self.assertIn(new_artist.name.encode(), response.content)
+        self.assertIn(new_employee.firstName.encode(), response.content)
 
-    def test_get_artist_form(self):
+    # def test_get_artist_form(self):
 
-      response = self.client.get(reverse('history:artist_form'))
+    #   response = self.client.get(reverse('history:artist_form'))
 
-      self.assertIn(
-          '<input type="text" name="name" maxlength="100" required id="id_name">'.encode(), response.content)
+    #   self.assertIn(
+    #       '<input type="text" name="name" maxlength="100" required id="id_name">'.encode(), response.content)
 
-    def test_post_artist(self):
+    # def test_post_artist(self):
 
-      response = self.client.post(reverse('history:artist_form'), {'name': 'Bill Board', 'birth_date': '10/31/67', 'biggest_hit': "So Blue Fer You"})
+    #   response = self.client.post(reverse('history:artist_form'), {'name': 'Bill Board', 'birth_date': '10/31/67', 'biggest_hit': "So Blue Fer You"})
 
-      # Getting 302 back because we have a success url and the view is redirecting
-      self.assertEqual(response.status_code, 302)
+    #   # Getting 302 back because we have a success url and the view is redirecting
+    #   self.assertEqual(response.status_code, 302)
 
-    def test_get_artist_detail(self):
-      new_artist = Artist.objects.create(
-          name="Suzy Saxophone",
-          birth_date="12/25/58",
-          biggest_hit="Honk Honk Squeak"
-      )
+    # def test_get_artist_detail(self):
+    #   new_artist = Artist.objects.create(
+    #       name="Suzy Saxophone",
+    #       birth_date="12/25/58",
+    #       biggest_hit="Honk Honk Squeak"
+    #   )
 
-      response = self.client.get(reverse('history:artist_detail', args=(1,)))
-      self.assertEqual(response.context["artist_detail"].name, new_artist.name)
+    #   response = self.client.get(reverse('history:artist_detail', args=(1,)))
+    #   self.assertEqual(response.context["artist_detail"].name, new_artist.name)
 
