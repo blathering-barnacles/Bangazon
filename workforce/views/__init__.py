@@ -1,1 +1,1 @@
-from .trainingProgram_views import trainingList 
+from .trainingProgram_views import trainingList, newTraining
