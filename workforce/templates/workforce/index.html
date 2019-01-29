@@ -1,0 +1,7 @@
+<h1>All departments</h1>
+
+<ul>
+  {% for department in department_list %}
+  <li><a href="{% url 'workforce:departmentDetail' department.id %}">{{ department.name }}</a></li>
+  {% endfor %}
+</ul>

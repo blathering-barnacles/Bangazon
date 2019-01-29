@@ -1,10 +1,20 @@
-from django.urls import path 
+from django.urls import path
 
-from workforce import views
-from . import views
+# from workforce import views
+# from .views import departmentDetail_view
+from .views import views
 
 app_name = 'workforce'
 
+# urlpatterns = [
+#     path('', departmentDetail_view.index, name='index'),
+#     path('<int:department_id>/', departmentDetail_view.detail, name='detail')
+# ]
+
+urlpatterns = [
+    path('', views.index, name='index'),
+    path('<int:department_id>/', views.detail, name='departmentDetail')
+]
 
 # example from DjangoMusic Exercise
 # urlpatterns = [
