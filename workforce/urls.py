@@ -1,11 +1,13 @@
-from django.urls import path 
+from django.urls import path
 
 from workforce import views
 from . import views
 
 app_name = 'workforce'
 
-
+urlpatterns = [
+	path('employees/', views.employeeList, name='employeeList'),
+]
 # example from DjangoMusic Exercise
 # urlpatterns = [
 #     # ex: /artists/
