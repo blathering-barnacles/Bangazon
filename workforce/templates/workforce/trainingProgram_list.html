@@ -1,0 +1,10 @@
+
+<h2>View All Training Programs</h2>
+
+<ul>
+    {% for program in training_list %}
+    <li>{{program.name}}</li>
+    {% empty %}
+    <li>No training programs available at this time</li>
+    {% endfor %}
+</ul>

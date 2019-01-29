@@ -1,0 +1,1 @@
+from .trainingProgram_views import trainingList 

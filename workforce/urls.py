@@ -4,6 +4,9 @@ from workforce import views
 from . import views
 
 app_name = 'workforce'
+urlpatterns = [
+    path('training/', views.trainingList, name='training')
+]
 
 
 # example from DjangoMusic Exercise
