@@ -4,8 +4,9 @@ from workforce import views
 from . import views
 
 app_name = 'workforce'
-
-
+urlpatterns = [
+    path('departments/', views.departmentList, name='departmentList')
+]
 # example from DjangoMusic Exercise
 # urlpatterns = [
 #     # ex: /artists/

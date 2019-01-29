@@ -1,0 +1,14 @@
+<h1>Departments</h1>
+{% if latest_dept_list %}
+    <ul>
+    {% for dept in latest_dept_list %}
+        <li><a href="{{song.video_link}}">{{ dept.name }}</a><p>Budget: ${{dept.budget}}</p><p>Department Size: {{dept.employeeCount}}</p>
+        </li>
+        </br>
+        {% endfor %}
+    </ul>
+    <!-- <a href="/home">Go Back</a> -->
+{% else %}
+    <p>No departments Available.</p>
+{% endif %}
+
