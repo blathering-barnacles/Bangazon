@@ -1,7 +1,7 @@
 import unittest
 from django.test import TestCase
 from django.urls import reverse
-from ..models import Employee
+from ..models import Employee, Department
 
 # Stuff to test
 # context: what we send to the template
@@ -23,12 +23,20 @@ from ..models import Employee
 class EmployeeListTest(TestCase):
 
     def test_list_employee(self):
+        """adds new employee and department to temp database and confirms accurate response
+        code, addition of employee to table and confirms that accurate first name, last name and
+        department are being returned """
         new_employee = Employee.objects.create(
             firstName="Richard",
             lastName="Lancaster",
             startDate="1998-08-17",
             isSupervisor="1",
-            department_id="2"
+            department_id="1"
+        )
+
+        new_department = Department.objects.create(
+            name="Accounting",
+            budget=100000
         )
 
         # Issue a GET request. "client" is a dummy web browser
@@ -47,6 +55,8 @@ class EmployeeListTest(TestCase):
         # If the string is: pythön!
         # The encoded version is: b'pyth\xc3\xb6n!'
         self.assertIn(new_employee.firstName.encode(), response.content)
+        self.assertIn(new_employee.lastName.encode(), response.content)
+        self.assertIn(new_department.name.encode(), response.content)
 
     # def test_get_artist_form(self):
 
