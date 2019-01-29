@@ -1,7 +1,16 @@
 <h1>{{ employee.firstName }} {{ employee.lastName}}</h1>
 <ul>
     <li>Start Date: {{ employee.startDate }}</li>
-    <li>Department: {{ employee.departmentId }}</li>
-    <li>Is Supervisor: {{ employee.isSupervisor}}</li>
+    <li>Department: {{ employee.departmentId }}
+        {% if employee.isSupervisor == 1 %}
+        <i>supervisor</i>
+        {% endif %}
+    </li>
+</ul>
+<h2>Training Programs</h2>
+<ul>
+    {% for program in training_programs %}
+    <li>{{ program.trainingProgramId.name }}</li>
+    {% endfor %}
 </ul>
 
