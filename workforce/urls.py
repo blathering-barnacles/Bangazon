@@ -7,6 +7,8 @@ app_name = 'workforce'
 urlpatterns = [
     path('departments/', views.departmentList, name='departmentList'),
     path('employees/', views.employeeList, name='employeeList'), #to load the page with employee list
+    path('training/', views.trainingList, name='training'),
+    path('addtraining/', views.newTraining, name='addTraining')
 ]
 # example from DjangoMusic Exercise
 # urlpatterns = [
@@ -17,3 +19,8 @@ urlpatterns = [
 #     path('postartist/', views.addArtistForm, name='addArtistForm'),
 #     path('postartist/submittal/', views.postartist, name='postartist')
 # ]
+
+
+
+
+

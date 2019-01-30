@@ -20,14 +20,14 @@ class Employee(models.Model):
     startDate = models.DateField()
     isSupervisor = models.BooleanField()
 
-    """
+    def __str__(self):
+        """
 
     Purpose: 
         converts data to string,
     Arguments: 
         self: The first argument of every class method, including init, is always a reference to the current instance of the class. By convention, this argument is always named 'self'. 
 
-    """
-    def __str__(self):
+        """
         return self.firstName, self.lastName
 
