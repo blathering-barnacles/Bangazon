@@ -12,8 +12,7 @@ def newTraining(request):
     if request.method != 'POST':
         return render(request, 'workforce/trainingProgram_add.html')
     else:
-        firstName = request.POST['firstName']
-        lastName = request.POST['lastName']
+        progName = request.POST['trainName']
         startDate = request.POST['trainStart']
         endDate = request.POST['trainEnd']
         maxAttendees = request.POST['trainMax']

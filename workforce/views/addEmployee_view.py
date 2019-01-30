@@ -7,10 +7,11 @@ def addEmployee(request):
     if request.method != 'POST':
         return render(request, 'workforce/addEmployee.html')
     else:
-        progName = request.POST['trainName']
-        startDate = request.POST['trainStart']
-        endDate = request.POST['trainEnd']
-        maxAttendees = request.POST['trainMax']
-        obj = TrainingProgram(name=progName.title(), startDate=startDate, endDate=endDate, maxAttendees=maxAttendees)
+        firstName = request.POST['firstName']
+        lastName = request.POST['lastName']
+        startDate = request.POST['startDate']
+        supervisor = request.POST['supervisor']
+        department = request.POST['department']
+        obj = addEmployee(firstname=firstName.title(), lastName=lastName.title(), startDate=startDate, supervisor=supervisor, department=department)
         obj.save()
-        return HttpResponseRedirect(reverse('workforce:training'))
+        return HttpResponseRedirect(reverse('workforce:employeeList'))
