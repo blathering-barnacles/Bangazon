@@ -1,12 +1,11 @@
 from django.shortcuts import render, get_object_or_404
 
-from ..models import Department, Employee, TrainingProgram
+from ..models import Employee, TrainingProgram
 
 def index(request):
-    department_list = Department.objects.all()
     programs_list = TrainingProgram.objects.all()
     employee_list = Employee.objects.all()
-    context = { 'department_list': department_list, 'programs_list': programs_list, 'employee_list': employee_list }
+    context = { 'programs_list': programs_list, 'employee_list': employee_list }
     return render(request, 'workforce/index.html', context)
 
 def detail(request, department_id):

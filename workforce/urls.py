@@ -18,7 +18,6 @@ urlpatterns = [
 	path('employees/', views.employeeList, name='employeeList'), #to load the page with employee list
     path('departments/', views.departmentList, name='departmentList'),
     path('departmentDetail/<int:department_id>/', views.detail, name='departmentDetail'),
-    path('programs/<int:program_id>/', views.programsDetail, name="programsDetail"),
     path('training/', views.trainingList, name='training'),
     path('addtraining/', views.newTraining, name='addTraining')
 ]
