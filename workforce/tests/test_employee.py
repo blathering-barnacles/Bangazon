@@ -7,7 +7,10 @@ import datetime
 
 class EmployeeTest(TestCase):
     def test_detail(self):
-        '''[adds new employee, department, training, and employeeTraining relationship to the virtual database and confirms that the response contains the employee's first name, last name, department name and training program]
+        '''
+
+        [adds new employee, department, training, and employeeTraining relationship to the virtual database and confirms that the response contains the employee's first name, last name, department name and training program]
+
         '''
 
         new_department = Department.objects.create(
@@ -43,29 +46,33 @@ class EmployeeTest(TestCase):
         self.assertEqual(response.context["training_programs"][0].trainingProgram.name, new_training.name)
 
         def test_list_employee(self):
-        """adds new employee and department to temp database and confirms accurate response
-        code, addition of employee to table and confirms that accurate first name, last name and
-        department are being returned """
-        new_employee = Employee.objects.create(
-            firstName="Richard",
-            lastName="Lancaster",
-            startDate="1998-08-17",
-            isSupervisor="1",
-            department_id="1"
-        )
+            """
 
-        new_department = Department.objects.create(
-            name="Accounting",
-            budget=100000
-        )
+            adds new employee and department to temp database and confirms accurate response
+            code, addition of employee to table and confirms that accurate first name, last name and
+            department are being returned
 
-        response = self.client.get(reverse('workforce:employeeList'))
+            """
+            new_employee = Employee.objects.create(
+                firstName="Richard",
+                lastName="Lancaster",
+                startDate="1998-08-17",
+                isSupervisor="1",
+                department_id="1"
+            )
 
-        self.assertEqual(response.status_code, 200)  # Check that the response is 200 OK.
-        self.assertEqual(len(response.context['all_employees']), 1)
-        self.assertIn(new_employee.firstName.encode(), response.content)
-        self.assertIn(new_employee.lastName.encode(), response.content)
-        self.assertIn(new_department.name.encode(), response.content)
+            new_department = Department.objects.create(
+                name="Accounting",
+                budget=100000
+            )
+
+            response = self.client.get(reverse('workforce:employeeList'))
+
+            self.assertEqual(response.status_code, 200)  # Check that the response is 200 OK.
+            self.assertEqual(len(response.context['all_employees']), 1)
+            self.assertIn(new_employee.firstName.encode(), response.content)
+            self.assertIn(new_employee.lastName.encode(), response.content)
+            self.assertIn(new_department.name.encode(), response.content)
 
     # def test_get_artist_form(self):
 

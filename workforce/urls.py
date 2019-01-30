@@ -3,10 +3,18 @@ from django.urls import path
 from workforce import views
 
 app_name = 'workforce'
+
+# urlpatterns = [
+#     path('', departmentDetail_view.index, name='index'),
+#     path('departments/<int:department_id>/', departmentDetail_view.detail, name='departmentDetail')
+# ]
+
 urlpatterns = [
-    path('employees/', views.employeeList, name='employeeList'), #to load the page with employee list
-    path('employees/<int:employee_id>/', views.employeeDetail, name='employeeDetail'),
+    path('', views.index, name='index'),
+	path('employees/', views.employeeList, name='employeeList'), #to load the page with employee list
     path('departments/', views.departmentList, name='departmentList'),
+    path('departmentDetail/<int:department_id>/', views.detail, name='departmentDetail'),
+    path('employees/<int:employee_id>/', views.employeeDetail, name='employeeDetail'),
     path('training/', views.trainingList, name='training'),
     path('addtraining/', views.newTraining, name='addTraining'),
     path('pastprograms/', views.pastTrainingList, name='pastTraining')
