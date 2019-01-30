@@ -17,12 +17,12 @@ class Employee(models.Model):
     startDate = models.DateField()
     isSupervisor = models.BooleanField()
 
-    """
-
-    Purpose: converts data to string,
-    Arguments: self
-
-    """
     def __str__(self):
+        """
+
+        Purpose: converts data to string,
+        Arguments: self
+
+        """
         return self.firstName, self.lastName
 
