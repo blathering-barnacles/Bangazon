@@ -5,7 +5,7 @@ from django.db import models
 # The many to many will access the join table and get the foreing keys that it needs from the join table.
 
 class Computer(models.Model):
-    ''' 
+    '''
     description: This class creates a computer and its properties.
     author: Alfonso Miranda.
     method: there is a string method that just returns the make.
