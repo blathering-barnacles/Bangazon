@@ -35,18 +35,8 @@ class DepartmentTest(TestCase):
         self.assertIn(new_department1.name.encode(), response.content)
     # ==================================================================
 
-        # new_employee = Employee.objects.create(
-        #     department=new_department,
-        #     firstName="Fonz",
-        #     lastName="Mirand",
-        #     startDate="1992-08-21",
-        #     isSupervisor=1
-        # )
 
-        # print(new_department)
-
-        # Issue a GET request. "client" is a dummy web browser
-        # 'reverse' is used to generate a URL for a given view. The main advantage is that you do not hard code routes in your code.
+        # TEST FOR TICKET 7 by ALFONSO MIRANDA
         responseDetail = self.client.get(reverse('workforce:departmentDetail', args=(1,)))
 
 
@@ -55,4 +45,5 @@ class DepartmentTest(TestCase):
 
         # Check that the response is 200 OK.
         self.assertEqual(responseDetail.status_code, 200)
+        # Check that there is a property of name in fake new_department1 as there would be on a real new department.
         self.assertEqual(responseDetail.context['departments'].name, new_department1.name)
