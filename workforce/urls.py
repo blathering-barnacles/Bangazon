@@ -15,11 +15,7 @@ app_name = 'workforce'
 
 urlpatterns = [
     path('', views.index, name='index'),
+	path('employees/', views.employeeList, name='employeeList'), #to load the page with employee list
     path('departments/<int:department_id>/', views.detail, name='departmentDetail'),
     path('programs/<int:program_id>/', views.programsDetail, name="programsDetail")
 ]
-
-# urlpatterns = [
-#     path('', departmentDetail_view.index, name='index'),
-#     path('departments/<int:department_id>/', departmentDetail_view.detail, name='departmentDetail')
-# ]

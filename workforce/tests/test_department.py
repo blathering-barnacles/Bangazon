@@ -29,14 +29,12 @@ class DepartmentDetailTest(TestCase):
         # Issue a GET request. "client" is a dummy web browser
         # 'reverse' is used to generate a URL for a given view. The main advantage is that you do not hard code routes in your code.
         response = self.client.get(reverse('workforce:departmentDetail', args=(1,)))
-        print(response.content)
+        response2 = self.client.get(reverse('workforce:departmentDetail', args=(2,)))
+
+        print("RESPONSE CONTENT: ", response.content)
+        print("RESPONSE CONTEXT: ", response.context['departments'])
 
         # Check that the response is 200 OK.
         self.assertEqual(response.status_code, 200)
-
-
-        # Check that the rendered context contains 1 artist.
-        # Response.context is the context variable passed to the template by the view. This is incredibly useful for testing, because it allows us to confirm that our template is getting all the data it needs.
-
-        print(len(response.context['departments']))
-        # self.assertEqual(len(response.context['departments']), 2)
+        self.assertEqual(response.context['departments'].name, new_department1.name)
+        self.assertEqual(response2.context['departments'].name, new_department2.name)
