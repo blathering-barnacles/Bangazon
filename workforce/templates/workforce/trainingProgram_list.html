@@ -3,7 +3,7 @@
 
 <ul>
     {% for program in training_list %}
-    <li>{{program.name}}</li>
+    <li>{{program.name}}<p>Start Date:{{program.startDate}}</p></li>
     {% empty %}
     <li>No training programs available at this time</li>
     {% endfor %}
