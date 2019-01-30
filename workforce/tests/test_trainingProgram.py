@@ -19,8 +19,10 @@ class TrainingTest(TestCase):
         self.assertEqual(response.status_code, 200)
 
         self.assertEqual(len(response.context['training_list']), 1)
-        print('HERE HERHE HERE', new_program.name.encode('utf-8'))
+        print('HERE HERHE HERE', new_program.name.encode())
         print('HERE HERHE HERE', response.content)
+
+        
         test_me = b'\n<h2>View All Training Programs</h2>\n\n<ul>\n    \n    <li>Coding with dummy code</li>\n    \n</ul>\n\n<a href="/workforce/addtraining">Create New Training Program</a>'
         self.assertIn(response.content, test_me)
 
