@@ -1,6 +1,6 @@
 from django.shortcuts import render, get_object_or_404
 
-from ..models import Employee, TrainingProgram
+from ..models import Department, Employee, TrainingProgram
 
 def index(request):
     programs_list = TrainingProgram.objects.all()

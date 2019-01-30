@@ -1,10 +1,6 @@
 from django.urls import path
 
-# from workforce import views
-# from .views import departmentDetail_view
-# from .views import views
-# from .views import __init__
-from . import views
+from workforce import views
 
 app_name = 'workforce'
 
@@ -18,9 +14,11 @@ urlpatterns = [
 	path('employees/', views.employeeList, name='employeeList'), #to load the page with employee list
     path('departments/', views.departmentList, name='departmentList'),
     path('departmentDetail/<int:department_id>/', views.detail, name='departmentDetail'),
+    path('employees/<int:employee_id>/', views.employeeDetail, name='employeeDetail'),
     path('training/', views.trainingList, name='training'),
     path('addtraining/', views.newTraining, name='addTraining')
 ]
+
 # example from DjangoMusic Exercise
 # urlpatterns = [
 #     # ex: /artists/
