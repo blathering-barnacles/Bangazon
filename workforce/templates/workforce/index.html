@@ -5,3 +5,22 @@
   <li><a href="{% url 'workforce:departmentDetail' department.id %}">{{ department.name }}</a></li>
   {% endfor %}
 </ul>
+
+<h1>Training Programs: </h1>
+<ul>
+    {% for program in programs_list %}
+
+    <li><a href="{% url 'workforce:programsDetail' program.id %}">{{ program.name }}</a></li>
+
+    {% endfor %}
+
+</ul>
+
+<ul>
+    {% for employee in employee_list %}
+
+    <li>{{employee.firstName}} {{ employee.department}}</li>
+
+    {% endfor %}
+
+</ul>

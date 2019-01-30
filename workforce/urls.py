@@ -15,7 +15,8 @@ app_name = 'workforce'
 
 urlpatterns = [
     path('', views.index, name='index'),
-    path('departments/<int:department_id>/', views.detail, name='departmentDetail')
+    path('departments/<int:department_id>/', views.detail, name='departmentDetail'),
+    path('programs/<int:program_id>/', views.programsDetail, name="programsDetail")
 ]
 
 # urlpatterns = [
