@@ -19,6 +19,8 @@ def newTraining(request):
         obj = TrainingProgram(name=progName.title(), startDate=startDate, endDate=endDate, maxAttendees=maxAttendees)
         obj.save()
         return HttpResponseRedirect(reverse('workforce:training'))
+
+
     
 
  
