@@ -1,7 +1,7 @@
 from django.shortcuts import get_object_or_404, render
 from django.http import HttpResponseRedirect
 from django.urls import reverse
-from ..models import Employee
+from ..models import Employee, Department
 
 def addEmployee(request):
     if request.method != 'POST':
@@ -11,7 +11,9 @@ def addEmployee(request):
         lastName = request.POST['lastName']
         startDate = request.POST['startDate']
         supervisor = request.POST['supervisor']
+        print(supervisor)
         department = request.POST['department']
-        obj = addEmployee(firstname=firstName.title(), lastName=lastName.title(), startDate=startDate, supervisor=supervisor, department=department)
+        taco = Department.objects.get(id=department)
+        obj = Employee(firstName=firstName.title(), lastName=lastName.title(), startDate=startDate, isSupervisor=supervisor, department=taco)
         obj.save()
         return HttpResponseRedirect(reverse('workforce:employeeList'))
