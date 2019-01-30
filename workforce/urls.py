@@ -6,6 +6,7 @@ app_name = 'workforce'
 
 urlpatterns = [
     path('<int:employee_id>/', views.employeeDetail, name='employeeDetail'),
+
 ]
 
 
