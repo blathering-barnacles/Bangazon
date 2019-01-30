@@ -2,7 +2,7 @@
 {% if latest_dept_list %}
     <ul>
     {% for dept in latest_dept_list %}
-        <li><a href="{{song.video_link}}">{{ dept.name }}</a><p>Budget: ${{dept.budget}}</p><p>Department Size: {{dept.employeeCount}}</p>
+        <li><a href="{% url 'workforce:departmentDetail' dept.id %}">{{ dept.name }}</a><p>Budget: ${{dept.budget}}</p><p>Department Size: {{dept.employeeCount}}</p>
         </li>
         </br>
         {% endfor %}
