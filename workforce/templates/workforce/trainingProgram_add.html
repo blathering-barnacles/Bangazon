@@ -1,0 +1,10 @@
+<h3>Fill out the info for your form</h3>
+
+<form action="{% url 'workforce:addTraining' %}" method="post">
+    {% csrf_token %}
+    <input type="text" name="trainName" />
+    <input type="date" name="trainStart" />
+    <input type="date" name="trainEnd" />
+    <input type="int" name="trainMax" />
+    <input type="submit" value="SAVE" />
+  </form>
