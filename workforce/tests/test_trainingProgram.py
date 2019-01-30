@@ -20,23 +20,20 @@ class TrainingTest(TestCase):
 
         self.assertEqual(len(response.context['training_list']), 1)
         
-        test_me = b'\n<h2>View All Training Programs</h2>\n\n<ul>\n    \n    <li>Coding with dummy code</li>\n    \n</ul>\n\n<a href="/workforce/addtraining">Create New Training Program</a>'
+        test_me = b'<h2>View All Training Programs</h2>\n\n<ul>\n    \n    <li>\n        <a href="/workforce/programs/1/">\n            Coding with dummy code\n        </a>\n    </li>\n    \n</ul>\n\n<a href="/workforce/addtraining">Create New Training Program</a>'
         
-        self.assertIn(response.content, test_me)
+        self.assertIn(test_me, response.content)
 
+    def test_get_program_form(self):
+        response = self.client.get(reverse('workforce:addTraining'))
+        # if this breaks check dev tools to get corrected input information
+        print('HERE', response.content)
+        
+        test_form = '<label>Event Name:\n        <input type="text" name="trainName" />\n    </label>\n    <label>Event Start Date:\n        <input type="date" name="trainStart" />\n    </label>\n    <label>Event End Date:\n        <input type="date" name="trainEnd" />\n    </label>\n    <label> Max Attendees:\n        <input type="int" name="trainMax" />\n    </label>\n    <input type="submit" value="SAVE" />\n</form>'.encode()
+        
+        # print('TEST', test_form)
 
-
-TODO:
-    # def test_get_program_form(self):
-    #     response = self.client.get(reverse('workforce:addTraining'))
-    #     # if this breaks check dev tools to get corrected input information
-    #     print('*HERE*', response.content)
-    #     print('TEST' )
-
-
-    #     test_form = '<h3>Fill out the info for your form</h3>\n\n<form action="/workforce/addtraining/" method="post">\n    <input type="hidden" name="csrfmiddlewaretoken" value="1cpVFcND6bRls7Xci6Mfr942B8cojp7If6oxNo9yZf9rjLuhxCxyaV1WCxBod5p9">\n    <input type="text" name="trainName" />\n    <input type="date" name="trainStart" />\n    <input type="date" name="trainEnd" />\n    <input type="int" name="trainMax" />\n    <input type="submit" value="SAVE" />\n  </form>'
-
-    #     self.assertIn(response.content, test_form)
+        self.assertIn(test_form, response.content)
 
 
 

@@ -2,9 +2,17 @@
 
 <form action="{% url 'workforce:addTraining' %}" method="post">
     {% csrf_token %}
-    <input type="text" name="trainName" />
-    <input type="date" name="trainStart" />
-    <input type="date" name="trainEnd" />
-    <input type="int" name="trainMax" />
+    <label>Event Name:
+        <input type="text" name="trainName" />
+    </label>
+    <label>Event Start Date:
+        <input type="date" name="trainStart" />
+    </label>
+    <label>Event End Date:
+        <input type="date" name="trainEnd" />
+    </label>
+    <label> Max Attendees:
+        <input type="int" name="trainMax" />
+    </label>
     <input type="submit" value="SAVE" />
-  </form>
+</form>
