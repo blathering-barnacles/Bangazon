@@ -9,7 +9,7 @@
 <h2>Training Programs</h2>
 <ul>
     {% for program in training_programs %}
-    <li>{{ program.trainingProgram.name }}</li>
+    <li>{{ program.trainingProgram.name }}, {{ program.trainingProgram.startDate}} - {{ program.trainingProgram.endDate}} </li>
     {% endfor %}
 </ul>
 
