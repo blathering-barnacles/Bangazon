@@ -2,6 +2,6 @@
 
 <ul>
     {% for employee in all_employees %}
-    <li>{{ employee.firstName }} {{ employee.lastName }} {{ employee.department }} </li>
+    <li><a href="{% url 'workforce:employeeDetail' employee.id %}">{{ employee.firstName }} {{ employee.lastName }} {{ employee.department }}</a></li>
     {% endfor %}
 </ul>

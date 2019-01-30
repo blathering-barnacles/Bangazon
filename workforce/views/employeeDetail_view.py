@@ -17,4 +17,4 @@ def employeeDetail(request, employee_id):
     employee = get_object_or_404(Employee, pk=employee_id)
     training_programs = EmployeeTrainingProgram.objects.filter(employee_id=employee_id)
     context = { 'employee': employee, 'training_programs': training_programs }
-    return render(request, 'workforce/employeeDetail_template.html', context)
+    return render(request, 'workforce/employeeDetail.html', context)
