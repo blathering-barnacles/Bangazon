@@ -1,12 +1,14 @@
 
-<h2>View All Training Programs</h2>
+<h2>View Upcoming Training Programs</h2>
 
 <ul>
     {% for program in training_list %}
-    <li>{{program.name}}<p>Start Date:{{program.startDate}}</p></li>
+    <li>{{program.name}}</li>
     {% empty %}
     <li>No training programs available at this time</li>
     {% endfor %}
 </ul>
 
 <a href="/workforce/addtraining">Create New Training Program</a>
+</br>
+<a href="/workforce/pastprograms">View Past Training Programs</a>

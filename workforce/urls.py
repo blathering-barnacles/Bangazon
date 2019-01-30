@@ -8,7 +8,8 @@ urlpatterns = [
     path('employees/<int:employee_id>/', views.employeeDetail, name='employeeDetail'),
     path('departments/', views.departmentList, name='departmentList'),
     path('training/', views.trainingList, name='training'),
-    path('addtraining/', views.newTraining, name='addTraining')
+    path('addtraining/', views.newTraining, name='addTraining'),
+    path('pastprograms/', views.pastTrainingList, name='pastTraining')
 ]
 
 # example from DjangoMusic Exercise
