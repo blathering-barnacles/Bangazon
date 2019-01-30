@@ -6,9 +6,7 @@ from ..models import Employee, Department
 class EmployeeTest(TestCase):
 
     def test_list_employee(self):
-        """adds new employee and department to temp database and confirms accurate response
-        code, addition of employee to table and confirms that accurate first name, last name and
-        department are being returned """
+
         new_employee = Employee.objects.create(
             firstName="Richard",
             lastName="Lancaster",
