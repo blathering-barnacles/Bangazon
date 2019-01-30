@@ -12,13 +12,14 @@ def newTraining(request):
     if request.method != 'POST':
         return render(request, 'workforce/trainingProgram_add.html')
     else:
-        progName = request.POST['trainName']
+        firstName = request.POST['firstName']
+        lastName = request.POST['lastName']
         startDate = request.POST['trainStart']
         endDate = request.POST['trainEnd']
         maxAttendees = request.POST['trainMax']
         obj = TrainingProgram(name=progName.title(), startDate=startDate, endDate=endDate, maxAttendees=maxAttendees)
         obj.save()
         return HttpResponseRedirect(reverse('workforce:training'))
-    
 
- 
+
+

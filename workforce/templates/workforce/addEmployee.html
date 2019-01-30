@@ -2,10 +2,19 @@
 
 <form action="{% url 'workforce:addEmployee' %}" method="post">
     {% csrf_token %}
-    <input type="text" name="firstName" />
-    <input type="text" name="lastName" />
-    <input type="date" name="startDate" />
-    <input type="date" name="trainEnd" />
-    <input type="int" name="trainMax" />
-    <input type="submit" value="SAVE" />
-  </form>
+    First Name:
+    <input type="text" name="firstName" /><br>
+    Last Name:
+    <input type="text" name="lastName" /><br>
+    Start Date:
+    <input type="date" name="startDate" /><br>
+    Supervisor:
+    <input type="checkbox" name="supervisor" value="1">Is Supervisor<br>
+    Department:
+    <select name="department">
+        <option value="1">HR</option>
+        <option value="2">Sales</option>
+        <option value="3">Administration</option>
+    </select><br>
+    <input type="submit" value="Save" />
+</form>
