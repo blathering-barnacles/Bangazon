@@ -46,21 +46,14 @@ def editProgramForm(request, program_id):
     '''
 
     program = get_object_or_404(TrainingProgram, pk=program_id)
+    # You need to pass the program.startDate as a string here for it to be a valid format you can use in your form as a value in the
+    # date input. If you decide to do a program.startDate in the form it will be the incorrect format for the input.
     startDate = str(program.startDate)
-    startDateNonString = program.startDate
     endDate = str(program.endDate)
-    print("program start date: ", program.startDate)
-    print("program end date: ", program.endDate)
-    # go to our join table filter through and find any rows where the ids match
+    # attendees variable goes to our join table and filters through and finds any rows where the trainingProgram_id matches
+    # the id passed down in the second argument.
     attendees = EmployeeTrainingProgram.objects.filter(trainingProgram_id=program_id)
-    td = timedelta(days=4)
-
-    if endDate <= startDate:
-        endDate = str(startDateNonString + td)
-        print("new end date: ", endDate)
-
     context = {'program': program, 'attendees': attendees, 'startDate': startDate, 'endDate': endDate}
-    print(context)
     return render(request, 'workforce/programEditForm.html', context)
 
 
@@ -85,56 +78,50 @@ def editProgram(request, program_id):
 
     '''
 
+    extraDays = timedelta(days=2)
+    todaysDate = datetime.now()
+
     program = TrainingProgram.objects.get(id=program_id)
-    # print("program :", program.id)
-    # print("program: ", program.values())
-    # print("new name value: ", request.POST['programName'])
     program.name = request.POST['programName']
-    # program.startDate = request.POST['startDate']
-    # print("program.startDate: ", program.startDate)
-    td = timedelta(days=2)
-    dates = datetime.now()
-    dateTest = dates + td
-    print("dates: ", str(dates)[0:10])
-    print("td: ", td)
-    print("date Test: ", dateTest)
+
+    # Here im not directly sticking the value that has been typed in the form, because I want to do some if statements first,
+    # so instead I stick the value inside a variable.
+
     endDateFilter = request.POST['endDate']
     startDateFilter = request.POST['startDate']
-    test = startDateFilter + " " + "00:00:00"
-    newtest = str(test)
-    intTest = datetime.fromisoformat(newtest)
-    # intTest = int(newtest)
-    print("new test: ", newtest)
-    print("TEST: ", str(intTest + td)[0:13])
 
-    # If the date typed in startDate is less than todays date then it grabs todays date and puts that there.
-    if startDateFilter <= str(dates)[0:10]:
+
+    # If the date typed in startDate in form is less than todays date then it runs this if statement.
+    # *Note the todaysDate is in a longer format of yyyy-mm-dd 00:00:00, in order for us to be able to compare it to
+    #  the startDateFilter which is in a yyyy-mm-dd format we need to slice it
+    # so it only gives us the yyyy-mm-dd.
+    if startDateFilter <= str(todaysDate)[0:10]:
         print("it passed!")
-        todaysDate = str(dates)[0:10]
+        todaysDate = str(todaysDate)[0:10]
         program.startDate = todaysDate
+    # If startDate entered in form is not less or equal than todays date then grab it and stick it in the dabases
+    # program startDate.
     else:
         print("it failed")
         program.startDate = startDateFilter
 
 
-    # If the date typed in on endDate is less than the start date then it grabs todays time and adds 4 days
-    # if endDateFilter <= str(program.startDate):
-    # print("it passed")
-    # futureDate = str(dates + td)
-    # print("future date: ", futureDate[0:10])
-    # program.endDate = futureDate[0:10]
-    # print("date lesser than start date: ", program.startDate)
-    # else:
-    # program.endDate = endDateFilter
-    # print("it failed")
-
-    # If the date entered in endDate is less than the date entered in startDate then it transforms and formats the
+    # If the date entered in endDate in form is less than the date entered in startDate then it transforms and formats the
     # startDate into a number and it adds 2 days. That new date will then be added as an endDate.
     if endDateFilter <= startDateFilter:
         print("it passed")
+
+        # In order to go through with this edit the value of the time needs to be in the correct format.
+        # The makeStartDate variable is grabing the yyyy-mm-dd format and adding the remaining pieces to it
+        # as our first step to transform it to a yyyy-mm-dd 00:00:00 format.
         makeStartDate = startDateFilter + " " + "00:00:00"
+        # Now that it has the pieces it needs makeStartDate is still just a string not in a format of time, which is why
+        # we need the datetime.fromisoformat() method to transform our string into a datetime format.
         formatedStartDate = datetime.fromisoformat(makeStartDate)
-        futureDate = str(formatedStartDate + td)
+        # The reason we needed it to be in a datetime format is so we can add extra days to it, after that we need to
+        # convert it back into a string so we can pass it.
+        futureDate = str(formatedStartDate + extraDays)
+        # BUT REMEMBER! its still in the yyyy-mm-dd 00:00:00 format so we need to slice it down!
         program.endDate = futureDate[0:10]
     else:
         print("it failed")
