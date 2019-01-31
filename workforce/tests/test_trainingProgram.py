@@ -47,6 +47,19 @@ class TrainingTest(TestCase):
         
         self.assertIn(test_form, response.content)
 
+    def test_program_details(self):
+        new_program = TrainingProgram.objects.create(
+            name='Coding with dummy code',
+            startDate='2019-03-19',
+            endDate='2019-03-23',
+            maxAttendees=33
+        )
+
+        response = self.client.get(reverse('workforce:editTraining', args=(1,)))
+        # Check that the response is 200
+        self.assertEqual(response.status_code, 200)
+
+
 
 
 
