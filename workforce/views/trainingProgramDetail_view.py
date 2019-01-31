@@ -132,3 +132,4 @@ def editProgram(request, program_id):
     program.maxAttendees = request.POST['maxAttendees']
     program.save()
     return HttpResponseRedirect(reverse('workforce:programsDetail', args=(program.id,)))
+

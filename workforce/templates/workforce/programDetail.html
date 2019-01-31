@@ -14,4 +14,5 @@
 <h4>Max Attendees: {{ program.maxAttendees }} </h4>
 
 <a href="{% url 'workforce:editTraining' program.id %}">Edit this Training Program</a>
+<a href="{% url 'workforce:deleteTraining' program.id %}">Delete this Training Program</a>
 {% endblock content %}
