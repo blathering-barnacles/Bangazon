@@ -31,6 +31,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    'safedelete',
     'workforce.apps.WorkforceConfig',
     'django.contrib.admin',
     'django.contrib.auth',
