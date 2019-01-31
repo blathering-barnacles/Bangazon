@@ -19,6 +19,7 @@ urlpatterns = [
     path('addtraining/', views.newTraining, name='addTraining'),
     path('departmentForm/', views.departmentForm, name='departmentForm'),
     path('addDepartment/', views.addDepartment, name='addDepartment'),
+    path('pastprograms/', views.pastTrainingList, name='pastTraining')
 ]
 
 # example from DjangoMusic Exercise

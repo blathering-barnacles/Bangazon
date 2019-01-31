@@ -47,3 +47,17 @@ class DepartmentTest(TestCase):
         self.assertEqual(responseDetail.status_code, 200)
         # Check that there is a property of name in fake new_department1 as there would be on a real new department.
         self.assertEqual(responseDetail.context['departments'].name, new_department1.name)
+
+    def test_add_department(self):
+
+        response = self.client.post(reverse('workforce:'))
+#         Your test suite must verify that the content of the response has the required input fields.
+# Your test suite must verify that when a POST operation is performed to the corresponding URL, then a successful response is received (i.e. status code must be 200)
+
+
+    # def test_post_artist(self):
+
+    #   response = self.client.post(reverse('history:artist_form'), {'name': 'Bill Board', 'birth_date': '10/31/67', 'biggest_hit': "So Blue Fer You"})
+
+    #   # Getting 302 back because we have a success url and the view is redirecting
+    #   self.assertEqual(response.status_code, 302)
