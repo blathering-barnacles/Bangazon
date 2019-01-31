@@ -1,3 +1,6 @@
+{% extends "workforce/index.html" %}
+
+{% block content %}
 <h1> All Employees </h1>
 
 <ul>
@@ -5,3 +8,7 @@
     <li><a href="{% url 'workforce:employeeDetail' employee.id %}">{{ employee.firstName }} {{ employee.lastName }} {{ employee.department }}</a></li>
     {% endfor %}
 </ul>
+
+<a href="{% url 'workforce:addEmployee' %}"><button type="button">Add New Employee</button></a>
+
+{% endblock content %}
