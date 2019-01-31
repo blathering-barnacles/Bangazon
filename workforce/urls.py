@@ -11,10 +11,11 @@ app_name = 'workforce'
 
 urlpatterns = [
     path('', views.index, name='index'),
-	path('employees/', views.employeeList, name='employeeList'), #to load the page with employee list
     path('departments/', views.departmentList, name='departmentList'),
     path('departmentDetail/<int:department_id>/', views.detail, name='departmentDetail'),
+	path('employees/', views.employeeList, name='employeeList'), #to load the page with employee list
     path('employees/<int:employee_id>/', views.employeeDetail, name='employeeDetail'),
+    path('addEmployee/', views.addEmployee, name='addEmployee'),
     path('training/', views.trainingList, name='training'),
     path('addtraining/', views.newTraining, name='addTraining'),
     path('editTraining/<int:program_id>', views.editProgramForm, name='editTraining'),

@@ -7,3 +7,4 @@ from .trainingProgramDetail_view import programsDetail, editProgramForm, editPro
 from .addDepartment_view import addDepartment, departmentForm
 from .index_view import index, navvyBar
 from .computerList_view import computerList
+from .addEmployee_view import addEmployee
