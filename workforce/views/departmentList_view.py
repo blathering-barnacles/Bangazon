@@ -19,7 +19,7 @@ def departmentList(request):
         request: The render() shortcut renders templates with a request context. Template context processors take the request object and return a dictionary which is added to the context.
 
     Returns:
-        [type] -- [description]
+        returns a list of the name and budget of the Departments.
     '''
 
     latest_dept_list = Department.objects.all().annotate(employeeCount=Count('employee'))
