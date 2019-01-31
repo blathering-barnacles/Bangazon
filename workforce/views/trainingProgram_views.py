@@ -7,7 +7,7 @@ from ..models import TrainingProgram
 
 def trainingList(request):
     '''
-    Summary: 
+    Summary:
         [this method filters through the TrainingProgram table by the startDate and provides the instances where the startDate is in the FUTURE when compared to the current time.]
 
     Author:
@@ -15,10 +15,10 @@ def trainingList(request):
 
     Arguments:
         request: The render() shortcut renders templates with a request context. Template context processors take the request object and return a dictionary which is added to the context.
-    
+
     Returns:
         Returns a list of the current training programs.
-    '''    
+    '''
     currentTime = timezone.now()
     training_list = TrainingProgram.objects.filter(startDate__gte=currentTime)
     context = {'training_list': training_list}
@@ -27,14 +27,14 @@ def trainingList(request):
 
 def newTraining(request):
     '''Will check to see if the request is a POST and if not it will render our form
-    
+
     Arguments:
     request: Template context processors take the request object and return a dictionary which is added to the context.
 
-    Returns: 
+    Returns:
     render: this will render our form in the browser
     HttpResponseRedirect: this will redirect the user back to training program list page
-    
+
     '''
 
 
@@ -49,11 +49,9 @@ def newTraining(request):
         obj.save()
         return HttpResponseRedirect(reverse('workforce:training'))
 
-
-    
 def pastTrainingList(request):
     '''
-    Summary: 
+    Summary:
         [this method filters through the TrainingProgram table by the startDate and provides the instances where the startDate is in the past when compared to the current time.]
 
     Author:
@@ -61,7 +59,7 @@ def pastTrainingList(request):
 
     Arguments:
         request: The render() shortcut renders templates with a request context. Template context processors take the request object and return a dictionary which is added to the context.
-    
+
     Returns:
         Returns a list of the PAST training programs.
     '''

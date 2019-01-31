@@ -1,3 +1,6 @@
+{% extends "workforce/index.html" %}
+
+{% block content %}
 <h2>{{ program.name }}</h2>
 
 <h3>Training Program Details:</h3>
@@ -9,3 +12,6 @@
     <p> {{ attendee.employee.firstName}} {{attendee.employee.lastName}} </p>
 {% endfor %}
 <h4>Max Attendees: {{ program.maxAttendees }} </h4>
+
+<a href="{% url 'workforce:editTraining' program.id %}">Edit this Training Program</a>
+{% endblock content %}

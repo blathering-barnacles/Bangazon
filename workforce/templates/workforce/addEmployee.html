@@ -1,0 +1,21 @@
+<h3>Fill out the info for the new Employee</h3>
+
+<form action="{% url 'workforce:addEmployee' %}" method="post">
+    {% csrf_token %}
+    First Name:
+    <input type="text" name="firstName" /><br>
+    Last Name:
+    <input type="text" name="lastName" /><br>
+    Start Date:
+    <input type="date" name="startDate" /><br>
+    Supervisor:
+    <input type="hidden" name="isSupervisor" value='0' >
+    <input type="checkbox" name="isSupervisor" value='1'>Is Supervisor<br>
+    Department:
+    <select name="department" id="department">
+        {% for department in department_list %}
+            <option value="{{ department.id }}">{{ department.name }}</option>
+        {% endfor %}
+    </select><br>
+    <input type="submit" value="Save" />
+</form>
