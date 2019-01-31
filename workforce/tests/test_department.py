@@ -50,14 +50,11 @@ class DepartmentTest(TestCase):
 
     def test_add_department(self):
 
-        response = self.client.post(reverse('workforce:'))
-#         Your test suite must verify that the content of the response has the required input fields.
-# Your test suite must verify that when a POST operation is performed to the corresponding URL, then a successful response is received (i.e. status code must be 200)
+        post_response = self.client.post(reverse('workforce:addDepartment'), {'department_name': 'Finance', 'department_budget': 2000})
 
+        self.assertEqual(post_response.status_code, 302)
 
-    # def test_post_artist(self):
+        form_response = self.client.get(reverse('workforce:departmentForm'))
+        form_content = '<label for="dept_name">Department Name</label>\n    <input type="text" name="department_name" id="dept_name">\n    <label for="dept_budget">Department Budget</label>\n    <input type="text" name="department_budget" id="dept_budget">\n\n    <input type="submit" value="Save Department">'
 
-    #   response = self.client.post(reverse('history:artist_form'), {'name': 'Bill Board', 'birth_date': '10/31/67', 'biggest_hit': "So Blue Fer You"})
-
-    #   # Getting 302 back because we have a success url and the view is redirecting
-    #   self.assertEqual(response.status_code, 302)
+        self.assertIn(form_content.encode(), form_response.content)
