@@ -20,7 +20,10 @@ urlpatterns = [
     path('departmentForm/', views.departmentForm, name='departmentForm'),
     path('addDepartment/', views.addDepartment, name='addDepartment'),
     path('programs/<int:program_id>/', views.programsDetail, name='programsDetail'),
-    path('pastprograms/', views.pastTrainingList, name='pastTraining')
+    path('pastprograms/', views.pastTrainingList, name='pastTraining'),
+    path('pastprograms/', views.pastTrainingList, name='pastTraining'),
+    path('computer/', views.computerList, name='computers'),
+    path('programs/<int:program_id>/', views.programsDetail, name='programsDetail')
 ]
 
 # example from DjangoMusic Exercise

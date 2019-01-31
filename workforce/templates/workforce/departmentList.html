@@ -1,3 +1,6 @@
+{% extends "workforce/index.html" %}
+
+{% block content %}
 <h1>Departments</h1>
 {% if latest_dept_list %}
     <ul>
@@ -12,4 +15,6 @@
     <p>No departments Available.</p>
 {% endif %}
 <a href="{% url 'workforce:departmentForm' %}"><button type="button">Add New Department</button></a>
+
+{% endblock content %}
 
