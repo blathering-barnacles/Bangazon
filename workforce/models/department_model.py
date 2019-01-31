@@ -1,8 +1,6 @@
 from django.db import models
-from safedelete.models import SafeDeleteModel
-from safedelete.models import HARD_DELETE_NOCASCADE
 
-class Department(models.Model, SafeDeleteModel):
+class Department(models.Model):
     """
 
     Summary:
@@ -15,7 +13,7 @@ class Department(models.Model, SafeDeleteModel):
         __str__: computes the “informal” or nicely printable string representation of an object. The return value must be a string object.
 
     """
-    _safedelete_policy = HARD_DELETE_NOCASCADE
+
     name = models.CharField(max_length=100)
     budget = models.IntegerField()
 
