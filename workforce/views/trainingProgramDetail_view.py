@@ -133,3 +133,7 @@ def editProgram(request, program_id):
     program.save()
     return HttpResponseRedirect(reverse('workforce:programsDetail', args=(program.id,)))
 
+def deleteProgram(self, program_id):
+    program = get_object_or_404(TrainingProgram, pk=program_id)
+    program.delete()
+    return HttpResponseRedirect(reverse('workforce:training'))
