@@ -25,8 +25,6 @@ class EmployeeTest(TestCase):
             maxAttendees = 10
         )
 
-    def test_list_employee(self):
-
         new_employee = Employee.objects.create(
             firstName = "Wally",
             lastName = "Barnett",
@@ -47,7 +45,8 @@ class EmployeeTest(TestCase):
         self.assertIn(new_employee.department.name.encode(), response.content)
         self.assertEqual(response.context["training_programs"][0].trainingProgram.name, new_training.name)
 
-        def test_list_employee(self):
+    def test_list_employee(self):
+            # R Lancaster Ticket 1 Test Requirement 1: Your test suite must verify that the content of the response has one, or more, of the values that are expected. For example, if one of the employees in Fred Jackson, then your test must test that both "Fred" and "Jackson" are in the response content. Likewise for the department that the employee is assigned to.
             """
 
             adds new employee and department to temp database and confirms accurate response
@@ -76,19 +75,22 @@ class EmployeeTest(TestCase):
             self.assertIn(new_employee.lastName.encode(), response.content)
             self.assertIn(new_department.name.encode(), response.content)
 
-    # def test_get_artist_form(self):
+    def test_add_employee_form(self):
+        # R Lancaster Ticket 2 Test Requirement 1: Your test suite must verify that the content of the GET response has all of the required input fields in the HTML.
 
-    #   response = self.client.get(reverse('history:artist_form'))
+        response = self.client.get(reverse('workforce:addEmployee'))
+        print(response)
 
-    #   self.assertIn(
-    #       '<input type="text" name="name" maxlength="100" required id="id_name">'.encode(), response.content)
+        self.assertIn(
+            'First Name:\n    <input type="text" name="firstName" /><br>\n    Last Name:\n    <input type="text" name="lastName" /><br>\n    Start Date:\n    <input type="date" name="startDate" /><br>\n    Supervisor:\n    <input type="hidden" name="isSupervisor" value=\'0\' >\n    <input type="checkbox" name="isSupervisor" value=\'1\'>Is Supervisor<br>\n    Department:\n    <select name="department">\n        <option value="1">HR</option>\n        <option value="2">Sales</option>\n        <option value="3">'.encode(), response.content)
 
-    # def test_post_artist(self):
+    # TODO:  NEEDS TO BE FIXED
+    # def test_post_employee(self):
+    #     # R Lancaster Ticket 2 Test Requirement 2: Your test suite must be able to successfully create a new employee.
+    #     response = self.client.post(reverse('workforce:addEmployee'), {'firstName': 'Bill', 'lastName': 'Ryland', 'startDate': '2018-01-02', 'isSupervisor': '1', 'department': '1'})
 
-    #   response = self.client.post(reverse('history:artist_form'), {'name': 'Bill Board', 'birth_date': '10/31/67', 'biggest_hit': "So Blue Fer You"})
-
-    #   # Getting 302 back because we have a success url and the view is redirecting
-    #   self.assertEqual(response.status_code, 302)
+    #     # Getting 302 back because we have a success url and the view is redirecting
+    #     self.assertEqual(response.status_code, 302)
 
     # def test_get_artist_detail(self):
     #   new_artist = Artist.objects.create(

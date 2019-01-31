@@ -4,16 +4,26 @@ from django.urls import reverse
 from ..models import Employee, Department
 
 def addEmployee(request):
+    '''
+    [Method is used to take information sent from the template and post a new employee to the employee table.]
+    TICKET 2: R Lancaster
+
+    Arguments:
+        request
+
+    Returns:
+        [redirect] -- successful completion of object saving to table will redirect the user to the list of employees.
+    '''
+
     if request.method != 'POST':
         return render(request, 'workforce/addEmployee.html')
     else:
         firstName = request.POST['firstName']
         lastName = request.POST['lastName']
         startDate = request.POST['startDate']
-        supervisor = request.POST['supervisor']
-        print(supervisor)
+        isSupervisor = request.POST['isSupervisor']
         department = request.POST['department']
-        taco = Department.objects.get(id=department)
-        obj = Employee(firstName=firstName.title(), lastName=lastName.title(), startDate=startDate, isSupervisor=supervisor, department=taco)
+        departmentName = Department.objects.get(id=department)
+        obj = Employee(firstName=firstName.title(), lastName=lastName.title(), startDate=startDate, isSupervisor=isSupervisor, department=departmentName)
         obj.save()
         return HttpResponseRedirect(reverse('workforce:employeeList'))
