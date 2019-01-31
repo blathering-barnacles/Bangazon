@@ -14,6 +14,7 @@
 {% else %}
     <p>No departments Available.</p>
 {% endif %}
+<a href="{% url 'workforce:departmentForm' %}"><button type="button">Add New Department</button></a>
 
 {% endblock content %}
 
