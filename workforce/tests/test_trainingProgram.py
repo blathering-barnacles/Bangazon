@@ -1,7 +1,7 @@
 import unittest
 from django.test import TestCase
 from django.urls import reverse
-from ..models import TrainingProgram
+from ..models import TrainingProgram, EmployeeTrainingProgram
 
 
 class TrainingTest(TestCase):
@@ -30,8 +30,35 @@ class TrainingTest(TestCase):
 
         # if this breaks checks print out your response.content to see if it has changed and adjust test_form to match
         test_form = '<label>Event Name:\n        <input type="text" name="trainName" />\n    </label>\n    <label>Event Start Date:\n        <input type="date" name="trainStart" />\n    </label>\n    <label>Event End Date:\n        <input type="date" name="trainEnd" />\n    </label>\n    <label> Max Attendees:\n        <input type="int" name="trainMax" />\n    </label>\n    <input type="submit" value="SAVE" />\n  </form>\n\n'.encode()
-        print("LOOK HEREEEEEEEEEEE", response.content)
+        
         self.assertIn(test_form, response.content)
+    
+    def test_get_edit_program_form(self):
+        new_program = TrainingProgram.objects.create(
+            name='Coding with dummy code',
+            startDate='2019-03-19',
+            endDate='2019-03-23',
+            maxAttendees=33
+        )
+        response = self.client.get(reverse('workforce:editTraining', args=(1,)))
+
+        # if this breaks checks print out your response.content to see if it has changed and adjust test_form to match
+        test_form = '<input type="submit" value="edit program"/>'.encode()
+        
+        self.assertIn(test_form, response.content)
+
+    def test_program_details(self):
+        new_program = TrainingProgram.objects.create(
+            name='Coding with dummy code',
+            startDate='2019-03-19',
+            endDate='2019-03-23',
+            maxAttendees=33
+        )
+
+        response = self.client.get(reverse('workforce:editTraining', args=(1,)))
+        # Check that the response is 200
+        self.assertEqual(response.status_code, 200)
+
 
 
 
