@@ -1,3 +1,6 @@
+{% extends "workforce/index.html" %}
+
+{% block content %}
 <h1>Add a Department </h1>
 
 <form action="{% url 'workforce:addDepartment' %}" method='POST'>
@@ -9,3 +12,4 @@
 
     <input type="submit" value="Save Department">
 </form>
+{% endblock content %}
