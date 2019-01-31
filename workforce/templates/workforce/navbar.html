@@ -1,13 +1,30 @@
 {% block nav %}
 
-<div class="navbar">
-  <h2 class="nav_title">Workforce</h2>
-  <section class="navbar_links">
-    <a class="nav_button" href="{% url 'workforce:employeeList' %}">Employees</a>
-    <a class="nav_button" href="{% url 'workforce:departmentList' %}">Departments</a>
-    <a class="nav_button" href="{% url 'workforce:training' %}">Training Programs</a>
-    <a class="nav_button" href="{% url 'workforce:computers' %}">Computers</a>
-  </section>
-</div>
+<nav class="navbar navbar-dark bg-dark">
+  <a class="navbar-brand" href="/workforce">Workforce</a>
+
+  <ul class="nav">
+    <li class="nav-item">
+      <a class="nav-link link" href="{% url 'workforce:employeeList' %}"
+        ><i class="far fa-user-circle"></i> Employees</a
+      >
+    </li>
+    <li class="nav-item">
+      <a class="nav-link link" href="{% url 'workforce:departmentList' %}"
+        ><i class="far fa-building"></i> Departments</a
+      >
+    </li>
+    <li class="nav-item">
+      <a class="nav-link link" href="{% url 'workforce:training' %}"
+        ><i class="far fa-calendar-alt"></i> Training Programs</a
+      >
+    </li>
+    <li class="nav-item">
+      <a class="nav-link link" href="{% url 'workforce:computers' %}"
+        ><i class="fas fa-laptop"></i> Computers</a
+      >
+    </li>
+  </ul>
+</nav>
 
 {% endblock %}
