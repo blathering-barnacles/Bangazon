@@ -84,13 +84,17 @@ class EmployeeTest(TestCase):
         self.assertIn(
             'First Name:\n    <input type="text" name="firstName" /><br>\n    Last Name:\n    <input type="text" name="lastName" /><br>\n    Start Date:\n    <input type="date" name="startDate" /><br>\n    Supervisor:\n    <input type="hidden" name="isSupervisor" value=\'0\' >\n    <input type="checkbox" name="isSupervisor" value=\'1\'>Is Supervisor<br>\n    Department:\n    <select name="department">\n        <option value="1">HR</option>\n        <option value="2">Sales</option>\n        <option value="3">'.encode(), response.content)
 
-    # TODO:  NEEDS TO BE FIXED
-    # def test_post_employee(self):
-    #     # R Lancaster Ticket 2 Test Requirement 2: Your test suite must be able to successfully create a new employee.
-    #     response = self.client.post(reverse('workforce:addEmployee'), {'firstName': 'Bill', 'lastName': 'Ryland', 'startDate': '2018-01-02', 'isSupervisor': '1', 'department': '1'})
 
-    #     # Getting 302 back because we have a success url and the view is redirecting
-    #     self.assertEqual(response.status_code, 302)
+    def test_post_employee(self):
+        # R Lancaster Ticket 2 Test Requirement 2: Your test suite must be able to successfully create a new employee.
+        new_department = Department.objects.create(
+            name="Accounting",
+            budget=100000
+            )
+        response = self.client.post(reverse('workforce:addEmployee'), {'firstName': 'Bill', 'lastName': 'Ryland', 'startDate': '2018-01-02', 'isSupervisor': '1', 'department': '1'})
+
+        # Getting 302 back because we have a success url and the view is redirecting
+        self.assertEqual(response.status_code, 302)
 
     # def test_get_artist_detail(self):
     #   new_artist = Artist.objects.create(
