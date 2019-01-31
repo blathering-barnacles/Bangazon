@@ -19,6 +19,7 @@ urlpatterns = [
     path('addtraining/', views.newTraining, name='addTraining'),
     path('departmentForm/', views.departmentForm, name='departmentForm'),
     path('addDepartment/', views.addDepartment, name='addDepartment'),
+    path('programs/<int:program_id>/', views.programsDetail, name='programsDetail'),
     path('pastprograms/', views.pastTrainingList, name='pastTraining')
 ]
 

@@ -26,6 +26,18 @@ def trainingList(request):
 
 
 def newTraining(request):
+    '''Will check to see if the request is a POST and if not it will render our form
+    
+    Arguments:
+    request: Template context processors take the request object and return a dictionary which is added to the context.
+
+    Returns: 
+    render: this will render our form in the browser
+    HttpResponseRedirect: this will redirect the user back to training program list page
+    
+    '''
+
+
     if request.method != 'POST':
         return render(request, 'workforce/trainingProgram_add.html')
     else:
@@ -36,6 +48,8 @@ def newTraining(request):
         obj = TrainingProgram(name=progName.title(), startDate=startDate, endDate=endDate, maxAttendees=maxAttendees)
         obj.save()
         return HttpResponseRedirect(reverse('workforce:training'))
+
+
     
 def pastTrainingList(request):
     '''
