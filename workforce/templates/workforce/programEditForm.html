@@ -1,3 +1,6 @@
+{% extends "workforce/index.html" %}
+
+{% block content %}
 <h1>{{ program.name }}</h1>
 
 {% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
@@ -12,3 +15,5 @@
 <p>{{ program.name }} Program Max Attendees: </p><input type="text" name="maxAttendees" value="{{ program.maxAttendees }}"/>
 <input type="submit" value="edit program"/>
 </form>
+
+{% endblock content %}
