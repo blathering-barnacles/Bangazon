@@ -1,3 +1,6 @@
+{% extends "workforce/index.html" %}
+
+{% block content %}
 <h1>{{ employee.firstName }} {{ employee.lastName}}</h1>
 <ul>
     <li>Department: {{ employee.department }}
@@ -13,3 +16,4 @@
     {% endfor %}
 </ul>
 
+{% endblock content %}

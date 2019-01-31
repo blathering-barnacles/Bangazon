@@ -29,8 +29,8 @@ class TrainingTest(TestCase):
         response = self.client.get(reverse('workforce:addTraining'))
         
         # if this breaks checks print out your response.content to see if it has changed and adjust test_form to match
-        test_form = '<label>Event Name:\n        <input type="text" name="trainName" />\n    </label>\n    <label>Event Start Date:\n        <input type="date" name="trainStart" />\n    </label>\n    <label>Event End Date:\n        <input type="date" name="trainEnd" />\n    </label>\n    <label> Max Attendees:\n        <input type="int" name="trainMax" />\n    </label>\n    <input type="submit" value="SAVE" />\n</form>'.encode()
-        
+        test_form = '<label>Event Name:\n        <input type="text" name="trainName" />\n    </label>\n    <label>Event Start Date:\n        <input type="date" name="trainStart" />\n    </label>\n    <label>Event End Date:\n        <input type="date" name="trainEnd" />\n    </label>\n    <label> Max Attendees:\n        <input type="int" name="trainMax" />\n    </label>\n    <input type="submit" value="SAVE" />\n  </form>\n\n'.encode()
+        print("LOOK HEREEEEEEEEEEE", response.content)
         self.assertIn(test_form, response.content)
 
 
