@@ -1,12 +1,29 @@
 from django.shortcuts import get_object_or_404, render
 from django.http import HttpResponseRedirect
 from django.urls import reverse
+from django.utils import timezone
 from ..models import TrainingProgram
 
 
 def trainingList(request):
-    training_list = TrainingProgram.objects.order_by('name')
-    return render(request, 'workforce/trainingProgram_list.html', {'training_list': training_list})
+    '''
+    Summary:
+        [this method filters through the TrainingProgram table by the startDate and provides the instances where the startDate is in the FUTURE when compared to the current time.]
+
+    Author:
+        Dillon Williams
+
+    Arguments:
+        request: The render() shortcut renders templates with a request context. Template context processors take the request object and return a dictionary which is added to the context.
+
+    Returns:
+        Returns a list of the current training programs.
+    '''
+    currentTime = timezone.now()
+    training_list = TrainingProgram.objects.filter(startDate__gte=currentTime)
+    context = {'training_list': training_list}
+    return render(request, 'workforce/trainingProgram_list.html', context)
+
 
 def newTraining(request):
     if request.method != 'POST':
@@ -20,5 +37,23 @@ def newTraining(request):
         obj.save()
         return HttpResponseRedirect(reverse('workforce:training'))
 
+def pastTrainingList(request):
+    '''
+    Summary:
+        [this method filters through the TrainingProgram table by the startDate and provides the instances where the startDate is in the past when compared to the current time.]
 
+    Author:
+        Dillon Williams
+
+    Arguments:
+        request: The render() shortcut renders templates with a request context. Template context processors take the request object and return a dictionary which is added to the context.
+
+    Returns:
+        Returns a list of the PAST training programs.
+    '''
+
+    currentTime = timezone.now()
+    past_training_list = TrainingProgram.objects.filter(startDate__lte=currentTime)
+    context = {'past_training_list': past_training_list}
+    return render(request, 'workforce/pastTrainingPrograms.html', context)
 
