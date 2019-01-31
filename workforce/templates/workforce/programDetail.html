@@ -9,3 +9,5 @@
     <p> {{ attendee.employee.firstName}} {{attendee.employee.lastName}} </p>
 {% endfor %}
 <h4>Max Attendees: {{ program.maxAttendees }} </h4>
+
+<a href="{% url 'workforce:editTraining' program.id %}">Edit this Training Program</a>

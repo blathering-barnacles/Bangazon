@@ -1,0 +1,14 @@
+<h1>{{ program.name }}</h1>
+
+{% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
+
+<form action="{% url 'workforce:editProgram' program.id %}" method="post">
+{% csrf_token %}
+<p>Program Name: </p><input type="text" name="programName" value="{{ program.name }}"/>
+<p>{{ program.name }} Program Current Start Date: {{ program.startDate }}</p>
+<p>New Start Date: </p><input type="date" name="startDate" value="{{ startDate }}" />
+<p>{{ program.name }} Program Current End Date: {{ program.endDate }}</p>
+<p>New End Date: </p><input type="date" name="endDate" value="{{ endDate }}" />
+<p>{{ program.name }} Program Max Attendees: </p><input type="text" name="maxAttendees" value="{{ program.maxAttendees }}"/>
+<input type="submit" value="edit program"/>
+</form>
