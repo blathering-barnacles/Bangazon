@@ -1,3 +1,6 @@
+{% extends "workforce/index.html" %}
+
+{% block content %}
 <h3>Fill out the info for your form</h3>
 
 <form action="{% url 'workforce:addTraining' %}" method="post">
@@ -15,4 +18,6 @@
         <input type="int" name="trainMax" />
     </label>
     <input type="submit" value="SAVE" />
-</form>
+  </form>
+
+  {% endblock content %}

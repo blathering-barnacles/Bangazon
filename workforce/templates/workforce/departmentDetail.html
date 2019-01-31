@@ -1,3 +1,6 @@
+{% extends "workforce/index.html" %}
+
+{% block content %}
 <h1>The employees from {{ departments.name }}</h1>
 
 <ul>
@@ -10,3 +13,5 @@
 
 <h5>Department Budget: </h5>
 <h6>{{ departments.budget }}</h6>
+
+{% endblock content %}
