@@ -47,3 +47,14 @@ class DepartmentTest(TestCase):
         self.assertEqual(responseDetail.status_code, 200)
         # Check that there is a property of name in fake new_department1 as there would be on a real new department.
         self.assertEqual(responseDetail.context['departments'].name, new_department1.name)
+
+    def test_add_department(self):
+
+        post_response = self.client.post(reverse('workforce:addDepartment'), {'department_name': 'Finance', 'department_budget': 2000})
+
+        self.assertEqual(post_response.status_code, 302)
+
+        form_response = self.client.get(reverse('workforce:departmentForm'))
+        form_content = '<label for="dept_name">Department Name</label>\n    <input type="text" name="department_name" id="dept_name">\n    <label for="dept_budget">Department Budget</label>\n    <input type="text" name="department_budget" id="dept_budget">\n\n    <input type="submit" value="Save Department">'
+
+        self.assertIn(form_content.encode(), form_response.content)
