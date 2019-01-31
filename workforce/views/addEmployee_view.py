@@ -14,10 +14,14 @@ def addEmployee(request):
     Returns:
         [redirect] -- successful completion of object saving to table will redirect the user to the list of employees.
     '''
-
-    if request.method != 'POST':
-        return render(request, 'workforce/addEmployee.html')
-    else:
+    if request.method == 'GET':
+        # get the departments so that names can display in the dropdown menu
+        department_list = Department.objects.all()
+        context = {"department_list" : department_list}
+        print(context)
+        #render the form page
+        return render(request, 'workforce/addEmployee.html', context)
+    elif request.method == 'POST':
         firstName = request.POST['firstName']
         lastName = request.POST['lastName']
         startDate = request.POST['startDate']

@@ -12,10 +12,10 @@
     <input type="hidden" name="isSupervisor" value='0' >
     <input type="checkbox" name="isSupervisor" value='1'>Is Supervisor<br>
     Department:
-    <select name="department">
-        <option value="1">HR</option>
-        <option value="2">Sales</option>
-        <option value="3">Administration</option>
+    <select name="department" id="department">
+        {% for department in department_list %}
+            <option value="{{ department.id }}">{{ department.name }}</option>
+        {% endfor %}
     </select><br>
     <input type="submit" value="Save" />
 </form>
