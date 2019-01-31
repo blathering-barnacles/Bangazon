@@ -1,0 +1,12 @@
+
+<h2>View Past Training Programs</h2>
+
+<ul>
+    {% for program in past_training_list %}
+    <li>{{program.name}}<p>Start Date: {{program.startDate}}</p><p>End Date: {{program.endDate}}</p></li>
+    {% empty %}
+    <li>No past training programs available at this time</li>
+    {% endfor %}
+</ul>
+
+<a href="/workforce/training">Go back to Upcoming Programs</a>
