@@ -1,11 +1,11 @@
 {% block nav %}
 
 <div class="navbar">
-  <h1 class="nav_title">Workforce</h1>
+  <h2 class="nav_title">Workforce</h2>
   <section class="navbar_links">
     <a class="nav_button" href="{% url 'workforce:employeeList' %}">Employees</a>
     <a class="nav_button" href="{% url 'workforce:departmentList' %}">Departments</a>
-    <!-- <a class="nav_button" href="{% url 'workforce:computers' %}">Computers</a> -->
+    <a class="nav_button" href="{% url 'workforce:computers' %}">Computers</a>
     <a class="nav_button" href="{% url 'workforce:training' %}">Training Programs</a>
   </section>
 </div>

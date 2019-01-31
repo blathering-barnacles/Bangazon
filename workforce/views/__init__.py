@@ -4,4 +4,5 @@ from .departmentList_view import departmentList
 from .trainingProgram_views import trainingList, newTraining, pastTrainingList
 from .employeeList_view import employeeList
 from .index_view import index, navvyBar
+from .computerList_view import computerList
 

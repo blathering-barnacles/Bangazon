@@ -1,3 +1,6 @@
+{% extends "workforce/index.html" %}
+
+{% block content %}
 <h1>Departments</h1>
 {% if latest_dept_list %}
     <ul>
@@ -11,4 +14,6 @@
 {% else %}
     <p>No departments Available.</p>
 {% endif %}
+
+{% endblock content %}
 
