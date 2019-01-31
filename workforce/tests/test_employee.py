@@ -82,7 +82,7 @@ class EmployeeTest(TestCase):
         print(response)
 
         self.assertIn(
-            'First Name:\n    <input type="text" name="firstName" /><br>\n    Last Name:\n    <input type="text" name="lastName" /><br>\n    Start Date:\n    <input type="date" name="startDate" /><br>\n    Supervisor:\n    <input type="hidden" name="isSupervisor" value=\'0\' >\n    <input type="checkbox" name="isSupervisor" value=\'1\'>Is Supervisor<br>\n    Department:\n    <select name="department">\n        <option value="1">HR</option>\n        <option value="2">Sales</option>\n        <option value="3">'.encode(), response.content)
+            'First Name:\n    <input type="text" name="firstName" /><br>\n    Last Name:\n    <input type="text" name="lastName" /><br>\n    Start Date:\n    <input type="date" name="startDate" /><br>\n    Supervisor:\n    <input type="hidden" name="isSupervisor" value=\'0\' >\n    <input type="checkbox" name="isSupervisor" value=\'1\'>Is Supervisor<br>\n    Department:\n    <select name="department" id="department">\n'.encode(), response.content)
 
 
     def test_post_employee(self):
