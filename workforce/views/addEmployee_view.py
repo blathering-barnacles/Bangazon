@@ -18,7 +18,6 @@ def addEmployee(request):
         # get the departments so that names can display in the dropdown menu
         department_list = Department.objects.all()
         context = {"department_list" : department_list}
-        print(context)
         #render the form page
         return render(request, 'workforce/addEmployee.html', context)
     elif request.method == 'POST':
