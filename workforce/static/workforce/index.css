@@ -5,3 +5,12 @@
 .link:hover {
     color: whitesmoke
 }
+
+.grid-container {
+    list-style-type: none;
+  }
+
+.grid-item {
+    display: inline-table;
+    width: 250px;
+}
