@@ -1,5 +1,4 @@
 from django.db import models
-from safedelete.models import SafeDeleteModel
 from .employee_model import Employee
 from .trainingProgram_model import TrainingProgram
 
