@@ -8,10 +8,27 @@
 <h4>Program Starts: {{ program.startDate }} </h4>
 <h4>Program Ends: {{ program.endDate }} </h4>
 <h4>Current Attendees:</h4>
+<form action="{% url 'workforce:addAttendee' program.id %}" method="post">
+{% csrf_token %}
+<select name="nonAttendee" id="employees">
+        {% for nonAttendee in nonAttendees %}
+            <option name="nonAttendee1" value="{{ nonAttendee.id }}">{{ nonAttendee.firstName }} {{ nonAttendee.lastName }}</option>
+        {% endfor %}
+        {% for nonattendee in nonAttendeesToAny %}
+            <option name="nonAttendee1" value="{{ nonattendee.id }}">{{ nonattendee.firstName}} {{ nonattendee.lastName }}</option>
+        {% endfor %}
+    </select><br>
+    <input type="submit" value="Add new Attendee"/>
+</form>
 {% for attendee in attendees %}
-    <p> {{ attendee.employee.firstName}} {{attendee.employee.lastName}} </p>
+<form action="{% url 'workforce:deleteAttendee' attendee.id %}" method="post">
+    {% csrf_token %}
+    <p> {{ attendee.employee.firstName}} {{attendee.employee.lastName}}&nbsp<input type="submit" value="Remove" /></p>
+</form>
 {% endfor %}
 <h4>Max Attendees: {{ program.maxAttendees }} </h4>
+
+
 
 <a href="{% url 'workforce:editTraining' program.id %}">Edit this Training Program</a>
 {% endblock content %}

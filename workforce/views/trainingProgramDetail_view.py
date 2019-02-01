@@ -3,8 +3,9 @@ from datetime import datetime, timedelta
 from django.http import HttpResponse, HttpResponseRedirect
 from django.urls import reverse
 from django.utils import timezone
+from django.db.models import Q
 
-from ..models import TrainingProgram, EmployeeTrainingProgram
+from ..models import TrainingProgram, EmployeeTrainingProgram, Employee
 
 def programsDetail(request, program_id):
     '''Will display details for a single Training Program
@@ -19,10 +20,59 @@ def programsDetail(request, program_id):
 
     # go to training program and get the program info for the program with the id that matches program_id
     program = get_object_or_404(TrainingProgram, pk=program_id)
+    thisProgram = program.id
     # go to our join table filter through and find any rows where the ids match
     attendees = EmployeeTrainingProgram.objects.filter(trainingProgram_id=program_id)
-    context = {'program': program, 'attendees': attendees}
+
+
+    # for loop not in use
+    # nonAttendees = ""
+    # for person in attendees:
+        # attendeeId = person.id
+        # print("PERSON ID: ", person.id)
+        # nonAttendees = EmployeeTrainingProgram.objects.raw('''SELECT we.* FROM workforce_employeetrainingprogram we WHERE we.trainingProgram_id <> %s''', [thisProgram])
+
+    nonAttendees = Employee.objects.raw('''SELECT we.* FROM workforce_employee we''')
+
+
+    # nonAttendees = EmployeeTrainingProgram.objects.filter(~Q(trainingProgram_id=program_id))
+
+    nonAttendeesToAny = EmployeeTrainingProgram.objects.raw('''
+    SELECT workforce_employee.*
+    FROM workforce_employee WHERE NOT EXISTS (SELECT * FROM  workforce_employeetrainingprogram WHERE workforce_employeetrainingprogram.employee_id = workforce_employee.id)
+    ''')
+
+    # print("non attendees: ", nonAttendees)
+    context = {'program': program, 'attendees': attendees, 'nonAttendees': nonAttendees, 'nonAttendeesToAny': nonAttendeesToAny }
+    # print("context: ", context)
     return render(request, 'workforce/programDetail.html', context)
+
+
+def newAttendee(request, program_id):
+    program = get_object_or_404(TrainingProgram, pk=program_id)
+    newAttendee = request.POST['nonAttendee']
+    currentAttendee = EmployeeTrainingProgram.objects.filter(employee_id=newAttendee,trainingProgram_id=program_id)
+    print("CURRENT ATTENDEE: ", currentAttendee.values())
+
+    if not currentAttendee:
+        q = EmployeeTrainingProgram(employee_id=newAttendee,trainingProgram_id=program.id)
+        q.save()
+    # elif newAttendee in attendingId:
+    else:
+        print("That person is already attending this program")
+        #
+    return HttpResponseRedirect(reverse('workforce:programsDetail', args=(program.id,)))
+
+def deleteAttendee(request, attendee_id):
+    program = get_object_or_404(EmployeeTrainingProgram, pk=attendee_id)
+    program_id = program.trainingProgram.id
+    attendee = EmployeeTrainingProgram.objects.filter(pk=attendee_id)
+    attendee.delete()
+
+    # return HttpResponseRedirect(reverse('workforce:training'))
+    return HttpResponseRedirect(reverse('workforce:programsDetail', args=(program_id,)))
+
+
 
 def editProgramForm(request, program_id):
 
@@ -84,9 +134,8 @@ def editProgram(request, program_id):
     program = TrainingProgram.objects.get(id=program_id)
     program.name = request.POST['programName']
 
-    # Here im not directly sticking the value that has been typed in the form, because I want to do some if statements first,
-    # so instead I stick the value inside a variable.
-
+    # Here im not directly sticking the values that have been typed in the form, because I want to do some if statements first,
+    # so instead I stick the values inside the endDateFilter and startDateFilter variables.
     endDateFilter = request.POST['endDate']
     startDateFilter = request.POST['startDate']
 
