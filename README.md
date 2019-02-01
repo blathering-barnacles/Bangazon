@@ -91,7 +91,7 @@ This will run all of the Unit Testing files created within the BangazonProject/B
 
 
 
-##Bangazon was created by the Blathering Barnacles - Cohort 28:
+## Bangazon was created by the Blathering Barnacles - Cohort 28:
 
 [Jessica Barnett](https://github.com/jessicabarnett8219)
 
