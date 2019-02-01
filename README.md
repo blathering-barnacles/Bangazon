@@ -61,7 +61,8 @@ python manage.py runserver
 
 ## 5. Navigate to the Bangazon workforce webpage
 
-Within your web browser, navigate to http://localhost:8000/workforce/  From here, you should see the main links for the Bangazon workforce application.
+Within your web browser, navigate to http://localhost:8000/workforce/
+From here, you should see the main links for the Bangazon workforce application.
 
 
 # Creating the Bangazon DB
@@ -74,50 +75,10 @@ Then enter
 ```
 python manage.py migrate
 ```
-You now have a database named sqlite3.sql within your existing folder.  Use the DB Browser for SQLite to open the new database.
+You now have a database named sqlite3.sql within your existing folder.  Use the DB Browser for SQLite to open the new database if desired.
 
-### Employees
-
-* GET You can access a list of all employees by running a Get call to `http://localhost:8000/employees`
-* GET one You can get the information on a single employee by runnning a Get call to `http://localhost:8000/employees/{employeeID}`
->Note you need to have a valid employee unique ID number to get the correct information
-
-* POST You can enter a new employee by running a Post call to `http://localhost:8000/addEmployee`
-
-    * You must put a `firstName`, `lastName`, `startDate`, `isSupervisor` and `department` with the Post.
-    * Example: `{'firstName': 'Bill', 'lastName': 'Ryland', 'startDate': '2018-01-02', 'isSupervisor': '1', 'department': '1'}`
-    * Note that there must be at least one Department in the department table in order for the POST to work.
-
-### Departments
-
-* GET You can access a list of all departments by running a Get call to `http://localhost:8000/departments`
-* GET one. You can get the information on a single department by runnning a Get call to `http://localhost:8000/departmentDetail/{departmentID}`
->Note you need to have at least one department unique ID number to get the correct information
-
-* You can update the info on a specific department by running a POST call to `http://localhost:8000/department/{departmentID}`
-    * Running a Put requires that you submit the entire object.
-    * Example: `{ "departmentID": 1, "name": "Professional Services", "budget": 200000 }`
-
-* POST You can enter a new payment type by running a Post call to `http://localhost:8000/addDepartment`
-    * You must put a `name` and `budget` with a Post.
-    * Example: `{ "name": "Professional Services", "budget": 100 }`
-
-### Training Programs
-
-* GET You can access a list of all training programs by running a Get call to `http://localhost:8000/trainingprogram`
-* GET one. You can get the information on a single training program by runnning a Get call to `http://localhost:8000/trainingprogram/{trainingprogramID}`
->Note you need to have a training program unique ID number to get the correct information
-
-* PUT You can update the info on a specific training program by running a Put call to `http://localhost:8000/trainingprogram/{trainingprogramID}`
-    * Running a Put requires that you submit the entire object.
-    * Example: `{ "trainingProgramID": 1 "dateStart": "02-14-2018", "dateEnd": "02-15-2018", "maxAttendees": 50 }`
-
-* DELETE You can delete a training program by running a Delete call to `http://localhost:8000/trainingprogram{trainingprogramID}`
->Note - you can only delete a training program if the current date is before the start date of a program. You cannot delete programs that have already happened.
-
-* POST You can enter a new training program by running a Post call to `http://localhost:8000/trainingProgram`
-    * You must put a `name`, `dateStart`, `dateEnd`, and `maxAttendees` with a Post.
-    * Example: `{ "name": "Learning Vim", "dateStart": "02-14-2018", "dateEnd": "10-15-2018", "maxAttendees": 50 }`
+## Entity Relationship Diagram
+![BANAZON ERD](/Bangazon_ERD.png "Bangazon ERD")
 
 ## Unit Testing
 
@@ -130,7 +91,7 @@ This will run all of the Unit Testing files created within the BangazonProject/B
 
 
 
-Bangazon was created by the Blathering Barnacles - Cohort 28:
+##Bangazon was created by the Blathering Barnacles - Cohort 28:
 
 [Jessica Barnett](https://github.com/jessicabarnett8219)
 
