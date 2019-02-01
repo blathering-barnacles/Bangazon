@@ -12,8 +12,9 @@
 <label class="mr-3">New Start Date </label><input type="date" name="startDate" value="{{ startDate }}" /><br><br>
 <label class="mr-3">New End Date </label><input type="date" name="endDate" value="{{ endDate }}" /><br><br>
 <label class="mr-3">Max Attendees </label><input type="text" name="maxAttendees" value="{{ program.maxAttendees }}"/><br><br>
-<input type="submit" value="edit program" class="btn btn-info mt-2"/>
+<input type="submit" value="Edit Program" class="btn btn-info mt-2 d-inline"/>
+<a href="{% url 'workforce:programsDetail' program.id %}"><button class="btn btn-secondary d-inline mt-2">Back</button></a>
 </form>
-<button class="btn btn-info"><a href="{% url 'workforce:programsDetail' program.id %}">Back</a></button>
+
 </div>
 {% endblock content %}
