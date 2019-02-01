@@ -1,17 +1,23 @@
 {% extends "workforce/index.html" %}
 
 {% block content %}
-<h2>View Past Training Programs</h2>
+<div class="container">
+<h1 class="mt-4 mb-3">View Past Training Programs</h1>
 
-<ul>
+<ul class="list-group">
     {% for program in past_training_list %}
-    <li>{{program.name}}<p>Start Date: {{program.startDate}}</p><p>End Date: {{program.endDate}}</p></li>
+    <li class="list-group-item list-group-item-action list-container"><a class="text-info d-inline" href="{% url 'workforce:programsDetail' program.id %}">
+            <h3 class="d-inline">{{program.name}}</h3>
+        </a>
+        <div>
+        <i class="fas fa-calendar-day fa-2x d-inline"></i><h4 class="d-inline"> Start Date: {{program.startDate}}</h4></li>
     {% empty %}
     <li>No past training programs available at this time</li>
     {% endfor %}
 </ul>
 
-<a href="/workforce/training">Go back to Upcoming Programs</a>
+<a href="/workforce/training"><button class="btn btn-info mt-3">Back to Upcoming Programs</button></a>
 
-
+</div>
 {% endblock content %}
+

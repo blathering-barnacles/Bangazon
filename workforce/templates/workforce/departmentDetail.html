@@ -1,17 +1,17 @@
 {% extends "workforce/index.html" %}
 
 {% block content %}
-<h1>The employees from {{ departments.name }}</h1>
+<div class="container">
+<h1 class="mt-4 mb-3">The Employees from {{ departments.name }}</h1>
 
-<ul>
+<ul class="list-group">
   {% for employee in employee_list %}
-    <li>{{ employee.firstName }} {{ employee.lastName }}</li>
+    <li class="list-group-item">{{ employee.firstName }} {{ employee.lastName }}</li>
   {% endfor %}
 
 </ul>
 
 
-<h5>Department Budget: </h5>
-<h6>{{ departments.budget }}</h6>
+<h5 class="mt-3">Department Budget: ${{ departments.budget }}</h5>
 
 {% endblock content %}

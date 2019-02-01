@@ -1,18 +1,19 @@
 {% extends "workforce/index.html" %}
 
 {% block content %}
-<h1> All Employees </h1>
+<div class="container">
+<h1 class="mt-4 mb-3">All Employees</h1>
 
-<ul>
+<ul class="list-group">
     {% for employee in all_employees %}
     <div class='grid-container'>
-    <li><a href="{% url 'workforce:employeeDetail' employee.id %}">
-        <div class="grid-item">{{ employee.firstName }} {{ employee.lastName }}</div> </a>
-        <div class="grid-item">{{ employee.department }}</div></li>
+    <li class="list-group-item"><a class="text-info" href="{% url 'workforce:employeeDetail' employee.id %}">
+        <div class="grid-item"><h4>{{ employee.firstName }} {{ employee.lastName }}</h4></div></a>
+        <div class="grid-item"><h4>{{ employee.department }}</h4></div></li>
     </div>
     {% endfor %}
 </ul>
 
-<a href="{% url 'workforce:addEmployee' %}"><button type="button">Add New Employee</button></a>
-
+<a href="{% url 'workforce:addEmployee' %}"><button type="button" class="btn btn-info mt-3">Add New Employee</button></a>
+</div>
 {% endblock content %}

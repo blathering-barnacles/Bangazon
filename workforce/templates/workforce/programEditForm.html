@@ -1,19 +1,18 @@
 {% extends "workforce/index.html" %}
 
 {% block content %}
-<h1>{{ program.name }}</h1>
+<div class="container">
+<h1 class="mt-4 mb-3">{{ program.name }}</h1>
 
 {% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
 
 <form action="{% url 'workforce:editProgram' program.id %}" method="post">
 {% csrf_token %}
-<p>Program Name: </p><input type="text" name="programName" value="{{ program.name }}"/>
-<p>{{ program.name }} Program Current Start Date: {{ program.startDate }}</p>
-<p>New Start Date: </p><input type="date" name="startDate" value="{{ startDate }}" />
-<p>{{ program.name }} Program Current End Date: {{ program.endDate }}</p>
-<p>New End Date: </p><input type="date" name="endDate" value="{{ endDate }}" />
-<p>{{ program.name }} Program Max Attendees: </p><input type="text" name="maxAttendees" value="{{ program.maxAttendees }}"/>
-<input type="submit" value="edit program"/>
+<label class="mr-3 mt-2">Program Name </label><input type="text" name="programName" value="{{ program.name }}"/><br><br>
+<label class="mr-3">New Start Date </label><input type="date" name="startDate" value="{{ startDate }}" /><br><br>
+<label class="mr-3">New End Date </label><input type="date" name="endDate" value="{{ endDate }}" /><br><br>
+<label class="mr-3">Max Attendees </label><input type="text" name="maxAttendees" value="{{ program.maxAttendees }}"/><br><br>
+<input type="submit" value="edit program" class="btn btn-info mt-2"/>
 </form>
-
+</div>
 {% endblock content %}

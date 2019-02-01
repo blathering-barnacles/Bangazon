@@ -1,19 +1,18 @@
 {% extends "workforce/index.html" %}
 
 {% block content %}
-<h1>{{ employee.firstName }} {{ employee.lastName}}</h1>
-<ul>
-    <li>Department: {{ employee.department }}
+<div class="container">
+<h1 class="mt-4 mb-3">{{ employee.firstName }} {{ employee.lastName}}</h1>
+    <p>Department: {{ employee.department }}
         {% if employee.isSupervisor == 1 %}
         <i>supervisor</i>
         {% endif %}
-    </li>
-</ul>
-<h2>Training Programs</h2>
-<ul>
+    </p>
+<h3>Training Programs</h3>
+<ul class="list-group">
     {% for program in training_programs %}
-    <li>{{ program.trainingProgram.name }}, {{ program.trainingProgram.startDate}} - {{ program.trainingProgram.endDate}} </li>
+    <li class="list-group-item">{{ program.trainingProgram.name }}, {{ program.trainingProgram.startDate}} - {{ program.trainingProgram.endDate}} </li>
     {% endfor %}
 </ul>
-
+</div>
 {% endblock content %}

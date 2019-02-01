@@ -1,23 +1,25 @@
 {% extends "workforce/index.html" %}
 
 {% block content %}
-<h3>Fill out the info for your form</h3>
+<div class="container">
+<h1 class="mt-4 mb-3">Add New Training Program</h1>
 
 <form action="{% url 'workforce:addTraining' %}" method="post">
     {% csrf_token %}
     <label>Event Name:
         <input type="text" name="trainName" />
-    </label>
+    </label><br>
     <label>Event Start Date:
         <input type="date" name="trainStart" />
-    </label>
+    </label><br>
     <label>Event End Date:
         <input type="date" name="trainEnd" />
-    </label>
+    </label><br>
     <label> Max Attendees:
         <input type="int" name="trainMax" />
-    </label>
-    <input type="submit" value="SAVE" />
+    </label><br>
+    <input type="submit" value="Save" class="btn btn-info"/>
   </form>
+</div>
 
   {% endblock content %}

@@ -1,41 +1,42 @@
-
 {% load static %}
 
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
-  <!-- Required meta tags -->
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-  <!-- Bootstrap CSS -->
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
-    crossorigin="anonymous">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+        crossorigin="anonymous">
 
     <!-- Font Awesome -->
- <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ"
+        crossorigin="anonymous">
 
-  <link rel="stylesheet" type="text/css" href="{% static 'workforce/index.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'workforce/index.css' %}">
 
-  <title>Bangazon</title>
+    <title>Bangazon</title>
 
 </head>
 
 <body>
-    
-{% block nav %}
-{% include "workforce/navbar.html" %}
-{% endblock nav %}
 
-{% block content %}
-<div class="jumbotron">
-        <h1 class="display-4">Welcome To Your Bangazon Portal</h1>
-        <p class="lead">Workforce allows you to manage Bangazon's employees, departments, training programs, and computers.</p>
-        <hr class="my-4">
+    {% block nav %}
+    {% include "workforce/navbar.html" %}
+    {% endblock nav %}
 
-      </div>
-{% endblock content %}
+    {% block content %}
+    <div class="jumbotron_container">
+        <div class="jumbotron jumbotron_item">
+            <h1 class="display-4">Welcome To Your Bangazon Portal</h1>
+            <p class="lead">Workforce allows you to manage Bangazon's employees, departments, training programs, and computers.</p>
+            <hr class="my-4">
+        </div>
+    </div>
+    {% endblock content %}
 
     <!-- JavaScript ofr Bootstrap -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
