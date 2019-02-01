@@ -42,12 +42,16 @@ class DepartmentTest(TestCase):
         self.assertEqual(responseDetail.context['departments'].name, new_department1.name)
 
     def test_add_department(self):
+        '''[Verfies that the inputs for department name and department budget render on the department list page and that the response code after submission of the form is 302 - posted and redirected.]
+        '''
 
+        # testing the response code
         post_response = self.client.post(reverse('workforce:addDepartment'), {'department_name': 'Finance', 'department_budget': 2000})
 
         self.assertEqual(post_response.status_code, 302)
 
+        # testing the html content for the form
         form_response = self.client.get(reverse('workforce:departmentForm'))
-        form_content = '<label for="dept_name">Department Name</label>\n    <input type="text" name="department_name" id="dept_name">\n    <label for="dept_budget">Department Budget</label>\n    <input type="text" name="department_budget" id="dept_budget">\n\n    <input type="submit" value="Save Department">'
+        form_content = '<input type="text" name="department_name" id="dept_name">\n    <label for="dept_budget" class="ml-2">Department Budget</label>\n    <input type="text" name="department_budget" id="dept_budget">\n\n    <input type="submit" value="Save Department" class="btn btn-info ml-3">\n</form>'
 
         self.assertIn(form_content.encode(), form_response.content)

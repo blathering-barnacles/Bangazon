@@ -1,3 +1,17 @@
+.jumbotron_container {
+    display: flex;
+    min-height: 100vh;
+}
+
+.jumbotron_item {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    min-height: 100%;
+    width: 100%;
+}
+
+
 .link {
     color: rgba(214, 199, 196, 0.788)
 }
@@ -13,4 +27,23 @@
 .grid-item {
     display: inline-table;
     width: 250px;
+}
+
+a:hover {
+    text-decoration: none;
+}
+
+.list-container {
+    display: flex;
+    justify-content: space-between;
+}
+
+.program-card {
+    width: 32rem;
+    margin: 0 auto 0 auto;
+}
+
+.card-btn {
+    display: flex;
+    justify-content: center;
 }
