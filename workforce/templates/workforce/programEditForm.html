@@ -14,5 +14,6 @@
 <label class="mr-3">Max Attendees </label><input type="text" name="maxAttendees" value="{{ program.maxAttendees }}"/><br><br>
 <input type="submit" value="edit program" class="btn btn-info mt-2"/>
 </form>
+<button class="btn btn-info"><a href="{% url 'workforce:programsDetail' program.id %}">Back</a></button>
 </div>
 {% endblock content %}
