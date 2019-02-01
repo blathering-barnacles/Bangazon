@@ -1,6 +1,5 @@
 from django.db import models
 
-
 class TrainingProgram(models.Model):
     """
     A model that defines a Training Program and will create a table in our database with the same name
@@ -8,6 +7,7 @@ class TrainingProgram(models.Model):
     methods: __str__
     """
 
+    # _safedelete_policy = HARD_DELETE_NOCASCADE
     name = models.CharField(max_length=35)
     startDate = models.DateField()
     endDate = models.DateField()

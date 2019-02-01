@@ -18,6 +18,7 @@ urlpatterns = [
     path('addEmployee/', views.addEmployee, name='addEmployee'),
     path('training/', views.trainingList, name='training'),
     path('addtraining/', views.newTraining, name='addTraining'),
+    path('deleteTraining/<int:program_id>', views.deleteProgram, name='deleteTraining'),
     path('editTraining/<int:program_id>', views.editProgramForm, name='editTraining'),
     path('editProgram/<int:program_id>', views.editProgram, name='editProgram'),
     path('programs/<int:program_id>/', views.programsDetail, name='programsDetail'),
