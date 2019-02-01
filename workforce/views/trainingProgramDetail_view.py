@@ -30,6 +30,7 @@ def programsDetail(request, program_id):
     # for person in attendees:
         # attendeeId = person.id
         # print("PERSON ID: ", person.id)
+        # This query looks for employees which are in the join table with training programs that do not have this programs id
         # nonAttendees = EmployeeTrainingProgram.objects.raw('''SELECT we.* FROM workforce_employeetrainingprogram we WHERE we.trainingProgram_id <> %s''', [thisProgram])
 
     nonAttendees = Employee.objects.raw('''SELECT we.* FROM workforce_employee we''')
@@ -37,18 +38,36 @@ def programsDetail(request, program_id):
 
     # nonAttendees = EmployeeTrainingProgram.objects.filter(~Q(trainingProgram_id=program_id))
 
+    # Thus raw query looks for employees that are not in the join table of employee training program
     nonAttendeesToAny = EmployeeTrainingProgram.objects.raw('''
     SELECT workforce_employee.*
     FROM workforce_employee WHERE NOT EXISTS (SELECT * FROM  workforce_employeetrainingprogram WHERE workforce_employeetrainingprogram.employee_id = workforce_employee.id)
     ''')
 
-    # print("non attendees: ", nonAttendees)
     context = {'program': program, 'attendees': attendees, 'nonAttendees': nonAttendees, 'nonAttendeesToAny': nonAttendeesToAny }
-    # print("context: ", context)
     return render(request, 'workforce/programDetail.html', context)
 
 
 def newAttendee(request, program_id):
+    '''
+
+    Summary: This function seeks for the row in the Employee Training Program table that has both this program id, and
+     where the id of the selected employee matches its employee_id and sticks it into the currentAttendee variable.
+
+     After that it runs an if statement, if when it searches the Employee Training Program for a row where its employee_id
+     matches the attendee selected and its trainingProgram_id matches the program_id and finds nothing, then do nothing.
+     This might seem pointless but its not, basically it prevents you from adding duplicate rows, because it should bring you nothing, if
+     it brings you something, that means something is already there and if you were to still add, it would create a duplicate.
+
+
+    Arguments:
+     request: Brings back the contents of the template.
+     program_id: Brings back the id of the current Traning Program.
+
+    Returns:
+     HttpResponseRedirect: Redirects to the detail of this program.
+
+    '''
     program = get_object_or_404(TrainingProgram, pk=program_id)
     newAttendee = request.POST['nonAttendee']
     currentAttendee = EmployeeTrainingProgram.objects.filter(employee_id=newAttendee,trainingProgram_id=program_id)
@@ -57,19 +76,32 @@ def newAttendee(request, program_id):
     if not currentAttendee:
         q = EmployeeTrainingProgram(employee_id=newAttendee,trainingProgram_id=program.id)
         q.save()
-    # elif newAttendee in attendingId:
     else:
         print("That person is already attending this program")
-        #
     return HttpResponseRedirect(reverse('workforce:programsDetail', args=(program.id,)))
 
-def deleteAttendee(request, attendee_id):
-    program = get_object_or_404(EmployeeTrainingProgram, pk=attendee_id)
-    program_id = program.trainingProgram.id
-    attendee = EmployeeTrainingProgram.objects.filter(pk=attendee_id)
-    attendee.delete()
+def deleteAttendee(request, trainingProgram_id):
 
-    # return HttpResponseRedirect(reverse('workforce:training'))
+    '''
+
+    Summary: This function grabs the trainingProgram_id from the template.
+     Then it seeks and selects the Employee Training Program row whose product key matches the trainingProgram_id
+     and sticks it into the attendee variable.
+
+     After that it deletes that attendee.
+
+    Arguments:
+     request: Brings back the contents of the template.
+     program_id: Brings back the id of the current Traning Program.
+
+    Returns:
+     HttpResponseRedirect: Redirects to the detail of this program.
+
+    '''
+    program = get_object_or_404(EmployeeTrainingProgram, pk=trainingProgram_id)
+    program_id = program.trainingProgram.id
+    attendee = EmployeeTrainingProgram.objects.filter(pk=trainingProgram_id)
+    attendee.delete()
     return HttpResponseRedirect(reverse('workforce:programsDetail', args=(program_id,)))
 
 

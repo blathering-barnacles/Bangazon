@@ -9,19 +9,19 @@
 
 <h4>Program Starts: {{ program.startDate }} </h4>
 <h4>Program Ends: {{ program.endDate }} </h4>
-<h4>Current Attendees:</h4>
 <form action="{% url 'workforce:addAttendee' program.id %}" method="post">
-{% csrf_token %}
-<select name="nonAttendee" id="employees">
+    {% csrf_token %}
+    <select name="nonAttendee" id="employees">
         {% for nonAttendee in nonAttendees %}
-            <option name="nonAttendee1" value="{{ nonAttendee.id }}">{{ nonAttendee.firstName }} {{ nonAttendee.lastName }}</option>
+        <option name="nonAttendee1" value="{{ nonAttendee.id }}">{{ nonAttendee.firstName }} {{ nonAttendee.lastName }}</option>
         {% endfor %}
         {% for nonattendee in nonAttendeesToAny %}
-            <option name="nonAttendee1" value="{{ nonattendee.id }}">{{ nonattendee.firstName}} {{ nonattendee.lastName }}</option>
+        <option name="nonAttendee1" value="{{ nonattendee.id }}">{{ nonattendee.firstName}} {{ nonattendee.lastName }}</option>
         {% endfor %}
     </select><br>
     <input type="submit" value="Add new Attendee"/>
 </form>
+<h4>Current Attendees:</h4>
 {% for attendee in attendees %}
 <form action="{% url 'workforce:deleteAttendee' attendee.id %}" method="post">
     {% csrf_token %}
@@ -32,6 +32,6 @@
 
 
 
-<a href="{% url 'workforce:editTraining' program.id %}">Edit this Training Program</a>
+<button><a href="{% url 'workforce:editTraining' program.id %}">Edit this Training Program</a></button>
 <button><a href="{% url 'workforce:deleteTraining' program.id %}">Delete this Training Program</a></button>
 {% endblock content %}
