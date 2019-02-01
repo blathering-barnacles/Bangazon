@@ -30,8 +30,8 @@ class DepartmentTest(TestCase):
         # If the string is: python!
         # The encoded version is: b'pyth\xc3\xb6n!'
         self.assertIn(new_department1.name.encode(), response.content)
-    # ==================================================================
 
+    # ==================================================================
 
         # TEST FOR TICKET 7 by ALFONSO MIRANDA
         responseDetail = self.client.get(reverse('workforce:departmentDetail', args=(1,)))
