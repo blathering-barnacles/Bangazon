@@ -15,9 +15,6 @@
         {% for nonAttendee in nonAttendees %}
         <option name="nonAttendee1" value="{{ nonAttendee.id }}">{{ nonAttendee.firstName }} {{ nonAttendee.lastName }}</option>
         {% endfor %}
-        {% for nonattendee in nonAttendeesToAny %}
-        <option name="nonAttendee1" value="{{ nonattendee.id }}">{{ nonattendee.firstName}} {{ nonattendee.lastName }}</option>
-        {% endfor %}
     </select><br>
     <input type="submit" value="Add new Attendee"/>
 </form>

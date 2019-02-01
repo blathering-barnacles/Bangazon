@@ -38,13 +38,13 @@ def programsDetail(request, program_id):
 
     # nonAttendees = EmployeeTrainingProgram.objects.filter(~Q(trainingProgram_id=program_id))
 
-    # Thus raw query looks for employees that are not in the join table of employee training program
-    nonAttendeesToAny = EmployeeTrainingProgram.objects.raw('''
-    SELECT workforce_employee.*
-    FROM workforce_employee WHERE NOT EXISTS (SELECT * FROM  workforce_employeetrainingprogram WHERE workforce_employeetrainingprogram.employee_id = workforce_employee.id)
-    ''')
+    # This raw query looks for employees that are not in the join table of employee training program, currently not in use.
+    # nonAttendeesToAny = EmployeeTrainingProgram.objects.raw('''
+    # SELECT workforce_employee.*
+    # FROM workforce_employee WHERE NOT EXISTS (SELECT * FROM  workforce_employeetrainingprogram WHERE workforce_employeetrainingprogram.employee_id = workforce_employee.id)
+    # ''')
 
-    context = {'program': program, 'attendees': attendees, 'nonAttendees': nonAttendees, 'nonAttendeesToAny': nonAttendeesToAny }
+    context = {'program': program, 'attendees': attendees, 'nonAttendees': nonAttendees}
     return render(request, 'workforce/programDetail.html', context)
 
 
