@@ -134,12 +134,13 @@ def editProgram(request, program_id):
     return HttpResponseRedirect(reverse('workforce:programsDetail', args=(program.id,)))
 
 def deleteProgram(self, program_id):
-    todaysDate = datetime.now()
-    formatedTodaysDate = str(todaysDate)[0:10]
+    # todaysDate = datetime.now()
+    print(program_id)
+    # formatedTodaysDate = str(todaysDate)[0:10]
     program = get_object_or_404(TrainingProgram, pk=program_id)
-    if str(program.startDate) <= formatedTodaysDate:
-        print("You cannot delete this program, because this program is happening right now, or has already taken place.")
-        return HttpResponseRedirect(reverse('workforce:programsDetail', args=(program.id, )))
-    else:
-        program.delete()
-        return HttpResponseRedirect(reverse('workforce:training'))
+    # if str(program.startDate) <= formatedTodaysDate:
+    #     print("You cannot delete this program, because this program is happening right now, or has already taken place.")
+    #     return HttpResponseRedirect(reverse('workforce:programsDetail', args=(program.id, )))
+    # else:
+    program.delete()
+    return HttpResponseRedirect(reverse('workforce:training'))

@@ -1,6 +1,5 @@
 from django.db import models
 from safedelete.models import SafeDeleteModel
-from safedelete.models import HARD_DELETE_NOCASCADE
 from .employee_model import Employee
 from .trainingProgram_model import TrainingProgram
 
