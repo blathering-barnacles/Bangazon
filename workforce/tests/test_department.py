@@ -13,13 +13,10 @@ class DepartmentTest(TestCase):
             budget="55000"
         )
 
-        # print(new_department1)
-
         # Issue a GET request. "client" is a dummy web browser
         # 'reverse' is used to generate a URL for a given view. The main advantage is that you do not hard code routes in your code.
         # Below our pretend client is making a virtual HTTP request to GET the departments
         response = self.client.get(reverse('workforce:departmentList'))
-        # print(response.content)
 
         # Check that the response is 200 OK.
         self.assertEqual(response.status_code, 200)
@@ -38,10 +35,6 @@ class DepartmentTest(TestCase):
 
         # TEST FOR TICKET 7 by ALFONSO MIRANDA
         responseDetail = self.client.get(reverse('workforce:departmentDetail', args=(1,)))
-
-
-        # print("RESPONSE CONTENT: ", responseDetail.content)
-        # print("RESPONSE CONTEXT: ", responseDetail.context['departments'])
 
         # Check that the response is 200 OK.
         self.assertEqual(responseDetail.status_code, 200)
