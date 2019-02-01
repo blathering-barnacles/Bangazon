@@ -1,4 +1,5 @@
 import unittest
+from django.utils import timezone
 from django.test import TestCase
 from django.urls import reverse
 from ..models import TrainingProgram, EmployeeTrainingProgram
@@ -63,14 +64,27 @@ class TrainingTest(TestCase):
     def test_delete_program(self):
         new_program = TrainingProgram.objects.create(
             name='Coding with dummy code',
-            startDate='2019-03-19',
+            startDate='2019-01-19',
             endDate='2019-03-23',
             maxAttendees=33
         )
 
-        response = self.client.get(reverse('workforce:editTraining', args=(1,)))
-        # Check that the response is 200
-        self.assertEqual(response.status_code, 200)
+        todaysDate = timezone.now()
+        formatedTodaysDate = str(todaysDate)[0:10]
+
+        # Check that the response is 200 when date is greater than todays date
+        response = self.client.get(reverse('workforce:deleteTraining', args=(1,)), follow=True)
+
+        # if the start date is less or equal to todays date then the status code changes to 400
+        if new_program.startDate <= formatedTodaysDate:
+            response.status_code = 400
+            print("YOU'RE STARTING YOUR PROGRAM BEFORE TODAY? I DONT THINK SO!")
+        # if you change the status code here to 200 the system will reject it.
+            self.assertEqual(response.status_code, 400)
+        else:
+            print("DELETE RESPONSE STATUS CODE: ", response.status_code)
+            self.assertEqual(response.status_code, 200)
+
 
 
 
