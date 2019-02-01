@@ -79,8 +79,9 @@ class EmployeeTest(TestCase):
         # R Lancaster Ticket 2 Test Requirement 1: Your test suite must verify that the content of the GET response has all of the required input fields in the HTML.
 
         response = self.client.get(reverse('workforce:addEmployee'))
+
         self.assertIn(
-            'First Name:\n    <input type="text" name="firstName" /><br><br>\n    Last Name:\n    <input type="text" name="lastName" /><br><br>\n    Start Date:\n    <input type="date" name="startDate" /><br><br>\n    Supervisor:\n    <input type="hidden" name="isSupervisor" value=\'0\' >\n    <input type="checkbox" name="isSupervisor" value=\'1\'>Is Supervisor<br><br>\n    Department:\n    <select name="department" id="department">'.encode(),response.content)
+            'First Name:\n    <input type="text" name="firstName" /><br><br>\n    Last Name:\n    <input type="text" name="lastName" /><br><br>\n    Start Date:\n    <input type="date" name="startDate" /><br><br>\n    Supervisor:\n    <input type="hidden" name="isSupervisor" value=\'0\' >\n    <input type="checkbox" name="isSupervisor" value=\'1\'>Is Supervisor<br><br>\n    Department:\n    <select name="department" id="department">'.encode(), response.content)
 
 
     def test_post_employee(self):
@@ -93,13 +94,3 @@ class EmployeeTest(TestCase):
 
         # Getting 302 back because we have a success url and the view is redirecting
         self.assertEqual(response.status_code, 302)
-
-    # def test_get_artist_detail(self):
-    #   new_artist = Artist.objects.create(
-    #       name="Suzy Saxophone",
-    #       birth_date="12/25/58",
-    #       biggest_hit="Honk Honk Squeak"
-    #   )
-
-    #   response = self.client.get(reverse('history:artist_detail', args=(1,)))
-    #   self.assertEqual(response.context["artist_detail"].name, new_artist.name)

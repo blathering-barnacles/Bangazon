@@ -66,9 +66,15 @@ class TrainingTest(TestCase):
         # if the start date is less or equal to todays date then the status code changes to 400
         if new_program.startDate <= formatedTodaysDate:
             response.status_code = 400
-            print("YOU'RE STARTING YOUR PROGRAM BEFORE TODAY? I DONT THINK SO!")
         # if you change the status code here to 200 the system will reject it.
             self.assertEqual(response.status_code, 400)
         else:
-            print("DELETE RESPONSE STATUS CODE: ", response.status_code)
             self.assertEqual(response.status_code, 200)
+
+    def test_add_program(self):
+
+        test_program = {'trainName': 'Testing in Python', 'trainStart': '2019-02-19', 'trainEnd': '2019-02-24', 'trainMax': '50'}
+
+        response = self.client.post(reverse('workforce:addTraining'), test_program)
+        # Check that the response status code comes back as 302
+        self.assertEqual(response.status_code, 302)

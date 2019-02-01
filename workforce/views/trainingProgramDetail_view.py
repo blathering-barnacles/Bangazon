@@ -216,7 +216,7 @@ def editProgram(request, program_id):
 
 def deleteProgram(self, program_id):
     # todaysDate = datetime.now()
-    # print(program_id)
+
     # formatedTodaysDate = str(todaysDate)[0:10]
     program = get_object_or_404(TrainingProgram, pk=program_id)
     # if str(program.startDate) <= formatedTodaysDate:
