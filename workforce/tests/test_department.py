@@ -40,8 +40,8 @@ class DepartmentTest(TestCase):
         responseDetail = self.client.get(reverse('workforce:departmentDetail', args=(1,)))
 
 
-        print("RESPONSE CONTENT: ", responseDetail.content)
-        print("RESPONSE CONTEXT: ", responseDetail.context['departments'])
+        # print("RESPONSE CONTENT: ", responseDetail.content)
+        # print("RESPONSE CONTEXT: ", responseDetail.context['departments'])
 
         # Check that the response is 200 OK.
         self.assertEqual(responseDetail.status_code, 200)

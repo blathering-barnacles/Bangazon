@@ -1,25 +1,25 @@
 {% extends "workforce/index.html" %}
 
 {% block content %}
-<h3>Fill out the info for the new Employee</h3>
+<h3>Fill out information for the new Employee</h3>
 
 <form action="{% url 'workforce:addEmployee' %}" method="post">
     {% csrf_token %}
     First Name:
-    <input type="text" name="firstName" /><br>
+    <input type="text" name="firstName" /><br><br>
     Last Name:
-    <input type="text" name="lastName" /><br>
+    <input type="text" name="lastName" /><br><br>
     Start Date:
-    <input type="date" name="startDate" /><br>
+    <input type="date" name="startDate" /><br><br>
     Supervisor:
     <input type="hidden" name="isSupervisor" value='0' >
-    <input type="checkbox" name="isSupervisor" value='1'>Is Supervisor<br>
+    <input type="checkbox" name="isSupervisor" value='1'>Is Supervisor<br><br>
     Department:
     <select name="department" id="department">
         {% for department in department_list %}
             <option value="{{ department.id }}">{{ department.name }}</option>
         {% endfor %}
-    </select><br>
+    </select><br><br>
     <input type="submit" value="Save" />
 </form>
 {% endblock content%}
