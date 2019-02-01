@@ -19,13 +19,16 @@ class TrainingTest(TestCase):
         self.assertEqual(response.status_code, 200)
         self.assertEqual(len(response.context['training_list']), 1)
         # if this breaks checks print out your response.content to see if it has changed and adjust test_me to match
-        test_me = b'\n<h2>View Upcoming Training Programs</h2>\n\n<ul>\n    \n    <li>\n        <a href="/workforce/programs/1/">\n            Coding with dummy code\n        </a>\n    </li>\n    \n</ul>\n\n<a href="/workforce/addtraining">Create New Training Program</a>\n</br>\n<a href="/workforce/pastprograms">View Past Training Programs</a>'
+
+        test_me = '<div class="container">\n<h1 class="mt-4 mb-3">View Upcoming Training Programs</h1>\n\n<ul class="list-group">\n    \n    <li class="list-group-item list-group-item-action list-container">\n        <a class="text-info d-inline" href="/workforce/programs/1/">\n            <h3 class="d-inline">Coding with dummy code</h3>\n        </a>\n        <div>\n        <i class="fas fa-calendar-day fa-2x d-inline"></i><h4 class="d-inline"> Start Date: March 19, 2019</h4>\n    </div>\n    </li>\n    \n</ul>\n\n<a href="/workforce/addtraining"><button class="btn btn-info d-inline mt-3">Create New Training Program</button></a>\n<a href="/workforce/pastprograms"><button class="btn btn-secondary d-inline mt-3">View Past Training Programs</button></a>\n</div>\n\n\n'.encode()
+
         self.assertIn(test_me, response.content)
 
     def test_get_program_form(self):
         response = self.client.get(reverse('workforce:addTraining'))
         # if this breaks checks print out your response.content to see if it has changed and adjust test_form to match
-        test_form = '<label>Event Name:\n        <input type="text" name="trainName" />\n    </label>\n    <label>Event Start Date:\n        <input type="date" name="trainStart" />\n    </label>\n    <label>Event End Date:\n        <input type="date" name="trainEnd" />\n    </label>\n    <label> Max Attendees:\n        <input type="int" name="trainMax" />\n    </label>\n    <input type="submit" value="SAVE" />\n  </form>\n\n'.encode()
+        test_form = '<input type="text" name="trainName" />\n    </label><br>\n    <label>Event Start Date:\n        <input type="date" name="trainStart" />\n    </label><br>\n    <label>Event End Date:\n        <input type="date" name="trainEnd" />\n    </label><br>\n    <label> Max Attendees:\n        <input type="int" name="trainMax" />\n    </label><br>\n    <input type="submit" value="Save" class="btn btn-info"/>\n  </form>'.encode()
+
         self.assertIn(test_form, response.content)
 
     def test_get_edit_program_form(self):
@@ -37,7 +40,7 @@ class TrainingTest(TestCase):
         )
         response = self.client.get(reverse('workforce:editTraining', args=(1,)))
         # if this breaks checks print out your response.content to see if it has changed and adjust test_form to match
-        test_form = '<input type="submit" value="edit program"/>'.encode()
+        test_form = '<input type="submit" value="Edit Program" class="btn btn-info mt-2 d-inline"/>'.encode()
         self.assertIn(test_form, response.content)
 
     def test_program_details(self):

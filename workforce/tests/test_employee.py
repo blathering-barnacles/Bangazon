@@ -79,9 +79,10 @@ class EmployeeTest(TestCase):
         # R Lancaster Ticket 2 Test Requirement 1: Your test suite must verify that the content of the GET response has all of the required input fields in the HTML.
 
         response = self.client.get(reverse('workforce:addEmployee'))
+        # print("############", response.content)
+        test_content = 'First Name:\n    <input type="text" name="firstName" /><br><br>\n    Last Name:\n    <input type="text" name="lastName" /><br><br>\n    Start Date:\n    <input type="date" name="startDate" /><br><br>\n    Supervisor:\n    <input type="hidden" name="isSupervisor" value=\'0\' >\n    <input type="checkbox" name="isSupervisor" value=\'1\'> Is Supervisor<br><br>\n    Department:\n    <select name="department" id="department">\n        \n    </select><br><br>\n    <input type="submit" value="Save" class="btn btn-info"/>\n</form>'
 
-        self.assertIn(
-            'First Name:\n    <input type="text" name="firstName" /><br><br>\n    Last Name:\n    <input type="text" name="lastName" /><br><br>\n    Start Date:\n    <input type="date" name="startDate" /><br><br>\n    Supervisor:\n    <input type="hidden" name="isSupervisor" value=\'0\' >\n    <input type="checkbox" name="isSupervisor" value=\'1\'>Is Supervisor<br><br>\n    Department:\n    <select name="department" id="department">'.encode(), response.content)
+        self.assertIn(test_content.encode(), response.content)
 
 
     def test_post_employee(self):

@@ -52,6 +52,6 @@ class DepartmentTest(TestCase):
 
         # testing the html content for the form
         form_response = self.client.get(reverse('workforce:departmentForm'))
-        form_content = '<label for="dept_name">Department Name</label>\n    <input type="text" name="department_name" id="dept_name">\n    <label for="dept_budget">Department Budget</label>\n    <input type="text" name="department_budget" id="dept_budget">\n\n    <input type="submit" value="Save Department">'
+        form_content = '<input type="text" name="department_name" id="dept_name">\n    <label for="dept_budget" class="ml-2">Department Budget</label>\n    <input type="text" name="department_budget" id="dept_budget">\n\n    <input type="submit" value="Save Department" class="btn btn-info ml-3">\n</form>'
 
         self.assertIn(form_content.encode(), form_response.content)
