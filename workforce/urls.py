@@ -4,11 +4,6 @@ from workforce import views
 
 app_name = 'workforce'
 
-# urlpatterns = [
-#     path('', departmentDetail_view.index, name='index'),
-#     path('departments/<int:department_id>/', departmentDetail_view.detail, name='departmentDetail')
-# ]
-
 urlpatterns = [
     path('', views.index, name='index'),
     path('departments/', views.departmentList, name='departmentList'),
