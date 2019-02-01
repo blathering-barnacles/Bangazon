@@ -2,6 +2,7 @@
 
 {% block content %}
 <h1>{{ program.name }}</h1>
+<button><a href="{% url 'workforce:programsDetail' program.id %}">Back</a></button>
 
 {% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
 
@@ -16,5 +17,4 @@
 <p>Who is attending: </p>
 <input type="submit" value="edit program"/>
 </form>
-
 {% endblock content %}

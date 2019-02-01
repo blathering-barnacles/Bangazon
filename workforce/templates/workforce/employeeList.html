@@ -5,7 +5,11 @@
 
 <ul>
     {% for employee in all_employees %}
-    <li><a href="{% url 'workforce:employeeDetail' employee.id %}">{{ employee.firstName }} {{ employee.lastName }} {{ employee.department }}</a></li>
+    <div class='grid-container'>
+    <li><a href="{% url 'workforce:employeeDetail' employee.id %}">
+        <div class="grid-item">{{ employee.firstName }} {{ employee.lastName }}</div> </a>
+        <div class="grid-item">{{ employee.department }}</div></li>
+    </div>
     {% endfor %}
 </ul>
 

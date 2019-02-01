@@ -2,6 +2,8 @@
 
 {% block content %}
 <h2>{{ program.name }}</h2>
+<button><a href="{% url 'workforce:training' %}">Back</a></button>
+<button><a href="{% url 'workforce:editTraining' program.id %}">Edit this Training Program</a></button>
 
 <h3>Training Program Details:</h3>
 
@@ -31,4 +33,5 @@
 
 
 <a href="{% url 'workforce:editTraining' program.id %}">Edit this Training Program</a>
+<button><a href="{% url 'workforce:deleteTraining' program.id %}">Delete this Training Program</a></button>
 {% endblock content %}
