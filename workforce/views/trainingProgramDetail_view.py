@@ -18,11 +18,11 @@ def programsDetail(request, program_id):
         Takes a user to a specific program's detail page
     '''
 
-    # go to training program and get the program info for the program with the id that matches program_id
-    program = get_object_or_404(TrainingProgram, pk=program_id)
-    thisProgram = program.id
-    # go to our join table filter through and find any rows where the ids match
-    attendees = EmployeeTrainingProgram.objects.filter(trainingProgram_id=program_id)
+    # program = get_object_or_404(TrainingProgram, pk=program_id)
+    program_sql = 'SELECT * FROM workforce_trainingprogram as program WHERE program.id=%s'
+    program = TrainingProgram.objects.raw(program_sql, [program_id])[0]
+    attendees_sql = 'SELECT * FROM workforce_employeetrainingprogram as et WHERE et.trainingProgram_id=%s'
+    attendees = EmployeeTrainingProgram.objects.raw(attendees_sql, [program_id])
 
 
     # for loop not in use
@@ -33,9 +33,11 @@ def programsDetail(request, program_id):
         # This query looks for employees which are in the join table with training programs that do not have this programs id
         # nonAttendees = EmployeeTrainingProgram.objects.raw('''SELECT we.* FROM workforce_employeetrainingprogram we WHERE we.trainingProgram_id <> %s''', [thisProgram])
 
-    nonAttendees = Employee.objects.raw('''SELECT we.* FROM workforce_employee we''')
+    # nonAttendees_sql = 'SELECT workforce_employeetrainingprogram.employee_id FROM workforce_employeetrainingprogram WHERE NOT (workforce_employeetrainingprogram.trainingProgram_id=%s);'
 
+    # nonAttendees = Employee.objects.raw('''SELECT we.* FROM workforce_employee we''')
 
+    # nonAttendees = EmployeeTrainingProgram.objects.raw(nonAttendees_sql, [program_id])
     # nonAttendees = EmployeeTrainingProgram.objects.filter(~Q(trainingProgram_id=program_id))
 
     # This raw query looks for employees that are not in the join table of employee training program, currently not in use.
@@ -44,7 +46,7 @@ def programsDetail(request, program_id):
     # FROM workforce_employee WHERE NOT EXISTS (SELECT * FROM  workforce_employeetrainingprogram WHERE workforce_employeetrainingprogram.employee_id = workforce_employee.id)
     # ''')
 
-    context = {'program': program, 'attendees': attendees, 'nonAttendees': nonAttendees}
+    context = {'program': program, 'attendees': attendees}
     return render(request, 'workforce/programDetail.html', context)
 
 

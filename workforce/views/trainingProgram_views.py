@@ -19,8 +19,10 @@ def trainingList(request):
     Returns:
         Returns a list of the current training programs.
     '''
+    future_training_sql = 'SELECT * FROM workforce_trainingprogram WHERE NOT (startDate < %s)'
+
     currentTime = timezone.now()
-    training_list = TrainingProgram.objects.filter(startDate__gte=currentTime)
+    training_list = TrainingProgram.objects.raw(future_training_sql, [currentTime])
     context = {'training_list': training_list}
     return render(request, 'workforce/trainingProgram_list.html', context)
 
@@ -63,9 +65,9 @@ def pastTrainingList(request):
     Returns:
         Returns a list of the PAST training programs.
     '''
-
+    past_training_sql = 'SELECT * FROM workforce_trainingprogram WHERE NOT (startDate > %s)'
     currentTime = timezone.now()
-    past_training_list = TrainingProgram.objects.filter(startDate__lte=currentTime)
+    past_training_list = TrainingProgram.objects.raw(past_training_sql, [currentTime])
     context = {'past_training_list': past_training_list}
     return render(request, 'workforce/pastTrainingPrograms.html', context)
 

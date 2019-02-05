@@ -10,15 +10,15 @@
                 </div>
         <div class="card-body text-left">
                 <h5 class="text-center">Current Attendees</h5>
-                <form action="{% url 'workforce:addAttendee' program.id %}" method="post" class="text-center mb-3">
+                <!-- <form action="{% url 'workforce:addAttendee' program.id %}" method="post" class="text-center mb-3">
                         {% csrf_token %}
                         <select name="nonAttendee" id="employees" >
                             {% for nonAttendee in nonAttendees %}
-                            <option name="nonAttendee1" value="{{ nonAttendee.id }}" class="d-inline">{{ nonAttendee.firstName }} {{ nonAttendee.lastName }}</option>
+                            <option name="nonAttendee1" value="{{ nonAttendee.employee_id }}" class="d-inline">{{ nonAttendee.employee.firstName }} {{ nonAttendee.employee.lastName }}</option>
                             {% endfor %}
                         </select>
                         <input type="submit" value="Add New Attendee" class="btn btn-info btn-sm"/>
-                    </form>
+                    </form> -->
                 {% for attendee in attendees %}
                 <ul>
                     <li>{{ attendee.employee.firstName}} {{attendee.employee.lastName}} <form action="{% url 'workforce:deleteAttendee' attendee.id %}" method="post" class="d-inline">

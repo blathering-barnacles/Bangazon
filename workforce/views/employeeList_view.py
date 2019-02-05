@@ -13,8 +13,8 @@ def employeeList(request):
     Returns:
         Returns the information over to the employeeList template.
     """
+    employees_sql = ' SELECT * FROM workforce_employee '
 
-
-    all_employees = Employee.objects.all()
+    all_employees = Employee.objects.raw(employees_sql)
     context = { 'all_employees' : all_employees }
     return render(request, 'workforce/employeeList.html', context)
