@@ -15,8 +15,12 @@ def departmentList(request):
     Returns:
         returns a list of the name and budget of the Departments.
     '''
+    try:
 
-    latest_dept_list = Department.objects.all().annotate(employeeCount=Count('employee'))
-    context = {'latest_dept_list': latest_dept_list}
-    return render(request, 'workforce/departmentList.html', context)
+        latest_dept_list = Department.objects.all().annotate(employeeCount=Count('employee'))
+        context = {'latest_dept_list': latest_dept_list}
+        return render(request, 'workforce/departmentList.html', context)
+
+    except Department.DoesNotExist:
+        raise Http404("Songs do not exist")
 
