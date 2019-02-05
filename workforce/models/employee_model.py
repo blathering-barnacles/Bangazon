@@ -6,9 +6,9 @@ class Employee(models.Model):
     Summary:
         This class creates the Employee table
 
-    Author: 
+    Author:
         Dillon Williams
-    
+
     methods:
         __str__: computes the “informal” or nicely printable string representation of an object. The return value must be a string object.
 
@@ -23,10 +23,10 @@ class Employee(models.Model):
     def __str__(self):
         """
 
-    Purpose: 
-        converts data to string,
-    Arguments: 
-        self: The first argument of every class method, including init, is always a reference to the current instance of the class. By convention, this argument is always named 'self'. 
+        Purpose:
+            converts data to string,
+        Arguments:
+            self: The first argument of every class method, including init, is always a reference to the current instance of the class. By convention, this argument is always named 'self'.
 
         """
         return self.firstName, self.lastName
