@@ -4,6 +4,7 @@ from django.http import HttpResponse, HttpResponseRedirect
 from django.urls import reverse
 from django.utils import timezone
 from django.db.models import Q
+from django.db import connection
 
 from ..models import TrainingProgram, EmployeeTrainingProgram, Employee
 
@@ -23,30 +24,9 @@ def programsDetail(request, program_id):
     program = TrainingProgram.objects.raw(program_sql, [program_id])[0]
     attendees_sql = 'SELECT * FROM workforce_employeetrainingprogram as et WHERE et.trainingProgram_id=%s'
     attendees = EmployeeTrainingProgram.objects.raw(attendees_sql, [program_id])
+    employees = Employee.objects.raw('SELECT * from workforce_employee')
 
-
-    # for loop not in use
-    # nonAttendees = ""
-    # for person in attendees:
-        # attendeeId = person.id
-        # print("PERSON ID: ", person.id)
-        # This query looks for employees which are in the join table with training programs that do not have this programs id
-        # nonAttendees = EmployeeTrainingProgram.objects.raw('''SELECT we.* FROM workforce_employeetrainingprogram we WHERE we.trainingProgram_id <> %s''', [thisProgram])
-
-    # nonAttendees_sql = 'SELECT workforce_employeetrainingprogram.employee_id FROM workforce_employeetrainingprogram WHERE NOT (workforce_employeetrainingprogram.trainingProgram_id=%s);'
-
-    # nonAttendees = Employee.objects.raw('''SELECT we.* FROM workforce_employee we''')
-
-    # nonAttendees = EmployeeTrainingProgram.objects.raw(nonAttendees_sql, [program_id])
-    # nonAttendees = EmployeeTrainingProgram.objects.filter(~Q(trainingProgram_id=program_id))
-
-    # This raw query looks for employees that are not in the join table of employee training program, currently not in use.
-    # nonAttendeesToAny = EmployeeTrainingProgram.objects.raw('''
-    # SELECT workforce_employee.*
-    # FROM workforce_employee WHERE NOT EXISTS (SELECT * FROM  workforce_employeetrainingprogram WHERE workforce_employeetrainingprogram.employee_id = workforce_employee.id)
-    # ''')
-
-    context = {'program': program, 'attendees': attendees}
+    context = {'program': program, 'attendees': attendees, 'employees': employees}
     return render(request, 'workforce/programDetail.html', context)
 
 
@@ -70,17 +50,17 @@ def newAttendee(request, program_id):
      HttpResponseRedirect: Redirects to the detail of this program.
 
     '''
-    program = get_object_or_404(TrainingProgram, pk=program_id)
-    newAttendee = request.POST['nonAttendee']
-    currentAttendee = EmployeeTrainingProgram.objects.filter(employee_id=newAttendee,trainingProgram_id=program_id)
-    print("CURRENT ATTENDEE: ", currentAttendee.values())
+    newAttendee = request.POST['attendee']
 
-    if not currentAttendee:
-        q = EmployeeTrainingProgram(employee_id=newAttendee,trainingProgram_id=program.id)
-        q.save()
-    else:
-        print("That person is already attending this program")
-    return HttpResponseRedirect(reverse('workforce:programsDetail', args=(program.id,)))
+    with connection.cursor() as cursor:
+        cursor.execute('INSERT into workforce_employeetrainingprogram VALUES(%s, %s, %s)', [None, newAttendee, program_id])
+
+    # if not currentAttendee:
+    #     q = EmployeeTrainingProgram(employee_id=newAttendee,trainingProgram_id=program.id)
+    #     q.save()
+    # else:
+    #     print("That person is already attending this program")
+    return HttpResponseRedirect(reverse('workforce:programsDetail', args=(program_id,)))
 
 def deleteAttendee(request, trainingProgram_id):
 

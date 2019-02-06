@@ -49,37 +49,3 @@ def addEmployee(request):
             cursor.execute('INSERT INTO workforce_employee VALUES(%s, %s, %s, %s, %s, %s)', [None, firstName, lastName, startDate, isSupervisor, department])
 
         return HttpResponseRedirect(reverse('workforce:employeeList'))
-
-
-
-# def songNew(request):
-#   if request.method == "GET":
-#     albums = Album.objects.raw("SELECT * FROM history_album")
-#     artists = Artist.objects.raw("SELECT * FROM history_artist")
-#     context = {
-#         "route": "history:song_new",
-#         "albums": albums,
-#         "artists": artists
-#     }
-#     return render(request, 'history/song_form.html', context)
-
-#   if request.method == "POST":
-#     title = request.POST["title"] # This will be a string
-#     artist = request.POST["artist"] # This will be an id
-
-#     # WITH THE ORM
-#     # Go get an instance of the artist so we can save it as foreign key on song
-#     # ar = Artist.objects.get(id=artist)
-#     # Shorthand way makes instance and saves at same time
-#     # Song.objects.create(title=title, artist=artist)
-
-#     # WITH RAW SQL USING DIRECT CONNECTION VIA CURSOR
-#     with connection.cursor() as cursor:
-#       cursor.execute("INSERT into history_song VALUES(%s, %s, %s)", [None, title, artist])
-#       new_song_id = cursor.lastrowid
-#       print("New song id after adding new song", new_song_id)
-
-#       # Now, save the album(s) to join table, since song/album is many-to-many
-#       addSongAlbum(request.POST.getlist("albums"), new_song_id)
-
-#       return HttpResponseRedirect(reverse('history:songs'))
