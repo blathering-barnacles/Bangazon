@@ -4,7 +4,7 @@ from .departmentList_view import departmentList
 from .trainingProgram_views import trainingList, newTraining, pastTrainingList
 from .employeeList_view import employeeList
 from .trainingProgramDetail_view import programsDetail, editProgramForm, editProgram, deleteProgram, newAttendee, deleteAttendee
-from .addDepartment_view import addDepartment, departmentForm
+from .addDepartment_view import addDepartment
 from .index_view import index, navvyBar
 from .computerList_view import computerList
 from .addEmployee_view import addEmployee

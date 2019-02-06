@@ -20,7 +20,7 @@ urlpatterns = [
     path('editProgram/<int:program_id>', views.editProgram, name='editProgram'),
     path('programs/<int:program_id>/', views.programsDetail, name='programsDetail'),
     path('pastprograms/', views.pastTrainingList, name='pastTraining'),
-    path('departmentForm/', views.departmentForm, name='departmentForm'),
+    # path('departmentForm/', views.addDepartment, name='departmentForm'),
     path('addDepartment/', views.addDepartment, name='addDepartment'),
     path('computer/', views.computerList, name='computers'),
 ]

@@ -6,10 +6,11 @@
 
 <form action="{% url 'workforce:addDepartment' %}" method='POST'>
     {% csrf_token %}
-    <label for="dept_name">Department Name</label>
+    <!-- <label for="dept_name">Department Name</label>
     <input type="text" name="department_name" id="dept_name">
     <label for="dept_budget" class="ml-2">Department Budget</label>
-    <input type="text" name="department_budget" id="dept_budget">
+    <input type="text" name="department_budget" id="dept_budget"> -->
+    {{ form }}
 
     <input type="submit" value="Save Department" class="btn btn-info ml-3">
 </form>
